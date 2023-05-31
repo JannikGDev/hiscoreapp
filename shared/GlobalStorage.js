@@ -1,17 +1,16 @@
-import * as SecureStore from 'expo-secure-store';
+import Storage from '../shared/Storage.js'
 const jwtKey = "jwt";
 
 async function save(key, value) {
-    await SecureStore.setItemAsync(key, JSON.stringify(value));
+    await Storage.save({key: key, data: JSON.stringify(value)});
 }
   
 async function getValueFor(key) {
-    return await SecureStore.getItemAsync(key)
+    return await Storage.load({key: key})
     .then(value => {
         return JSON.parse(value);
     })
     .catch(error => {
-        console.error(error);
         return null;
     });
 }
@@ -43,5 +42,5 @@ export const SetLoggedIn = async (tokenObject) => {
 }
 
 export const LogOut = async () => {
-    await SecureStore.deleteItemAsync(jwtKey);
+    await Storage.remove({key:jwtKey});
 }

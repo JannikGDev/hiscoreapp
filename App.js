@@ -52,7 +52,9 @@ export default function App() {
         <UserContext.Provider  value={{userState, setUserState}}>
           <NavigationContainer>
             <Stack.Navigator screenOptions={{
-                headerShown: false
+                headerStyle: defaultStyles.navigationHeader.headerStyle,
+                headerTintColor: defaultStyles.navigationHeader.headerTintColor,
+                headerTitleStyle: defaultStyles.navigationHeader.headerTitleStyle
               }}>
 
               {(
