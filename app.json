@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "HI-SCORE",
+    "slug": "HI-SCORE",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
