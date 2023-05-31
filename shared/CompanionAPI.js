@@ -1,6 +1,6 @@
 import { SetLoggedIn, GetJWTKey } from './GlobalStorage.js'
 
-const API_BASE_URL = 'https://continue.sodacookie.net';
+const API_BASE_URL = 'https://api.continue.sodacookie.net';
 
 const SendRequest = async (url, method, headers, body, onSuccessMessage = "Action successful") => {
 
