@@ -14,7 +14,7 @@ EXPOSE $PORT 19001 19002
 # install global packages
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH /home/node/.npm-global/bin:$PATH
-RUN yarn add --unsafe-perm --allow-root -g npm@latest expo-cli@latest
+RUN yarn add --unsafe-perm --allow-root -g npm@latest expo-cli@latest expo@latest
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 # due to default /opt permissions we have to create the dir with root and change perms
