@@ -4,6 +4,7 @@ import MessageBox from '../shared/MessageBox'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import styles from '../styles/defaultStyle';
 import {ScanCode} from '../shared/CompanionAPI.js'
+import { Camera } from 'expo-camera';
 
 
 export const QRScannerScreen = ({navigation, route}) => {
@@ -80,9 +81,13 @@ export const QRScannerScreen = ({navigation, route}) => {
                 navigation.goBack();
             }}
         />
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+
+      <Camera
         style={[StyleSheet.absoluteFillObject, {marginTop: 64}]}
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        barCodeScannerSettings={{
+          barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+        }}
       />
       {scanned && <Button title={'Tippen um nochmal zu scannen'} onPress={() => setScanned(false)} />}
     </View>
