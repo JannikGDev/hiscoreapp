@@ -15,6 +15,7 @@ export const QRScannerScreen = ({navigation, route}) => {
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
+      console.log(status);
       setHasPermission(status === 'granted');
     };
 
