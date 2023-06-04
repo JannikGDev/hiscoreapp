@@ -65,7 +65,6 @@ export default function App() {
     };
 
   return (
-
       <View style={{flex: 1, backgroundColor: defaultStyles.container.backgroundColor}}>
         <UserContext.Provider  value={{userState, setUserState}}>
           <NavigationContainer linking={linking}> 

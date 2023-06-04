@@ -37,7 +37,8 @@ const defaultStyles = StyleSheet.create({
         resizeMode: 'contain'
     },
     text: {
-        color: '#F9FDFC'
+        color: '#F9FDFC',
+        textAlign: 'center'
     },
     textDark: {
         color: '#8C9093'
