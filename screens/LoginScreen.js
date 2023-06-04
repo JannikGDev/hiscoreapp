@@ -3,7 +3,7 @@ import React, {useState, useContext} from 'react';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import MessageBox from '../shared/MessageBox'
-import { Login } from '../shared/CompanionAPI'
+import { Login, GetUserData } from '../shared/CompanionAPI'
 import { UserContext } from '../shared/Contexts';
 import { IsLoggedIn } from '../shared/GlobalStorage.js'
 
@@ -87,14 +87,19 @@ const LoginScreen = ({navigation, route}) => {
                     return;
                 }
 
-                let newState = {...userState};
-                newState.loggedIn = await IsLoggedIn();
-                setUserState(newState);
-
-                if(!newState.loggedIn) {
-                    setMessage(result.message);
-                    setShowMessage(true);
+                let loggedIn = await IsLoggedIn();
+                let isAdmin = false;
+      
+                if(loggedIn) {
+                  let result = await GetUserData();
+                  loggedIn = loggedIn && result.success;
+                  isAdmin = result.response.isAdmin;
                 }
+
+                let newUserState = {...userState};
+                newUserState.loggedIn = loggedIn;
+                newUserState.isAdmin = isAdmin;
+                setUserState(newUserState);
             }}
             />
         </View>

@@ -32,7 +32,6 @@ const ProfileScreen = ({navigation, route}) => {
             }
             
             let userData = result.response;
-            console.log(userData);
             setUserName(userData.userName);
             setLevel(userData.level);
             setCurrentExp(userData.experience);

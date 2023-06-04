@@ -37,7 +37,6 @@ export default function App() {
             isAdmin = result.response.isAdmin;
           }
          
-
           let newUserState = {...userState};
           newUserState.loggedIn = loggedIn;
           newUserState.isAdmin = isAdmin;
@@ -46,11 +45,30 @@ export default function App() {
          checkLogin();
     }, []);
 
+    const linkConfig = {
+      screens: {
+        Home: 'home',
+        Profile: 'usr',
+        QRScanner: 'scan',
+        QuestList: 'quests',
+        Login: 'login',
+        Register: 'register',
+        PasswordReset: 'pwreset',
+        QRCodeGenerator: 'qrgen',
+      },
+    };
+  
+
+    const linking = {
+      prefixes: [''],
+      config: linkConfig,
+    };
+
   return (
 
       <View style={{flex: 1, backgroundColor: defaultStyles.container.backgroundColor}}>
         <UserContext.Provider  value={{userState, setUserState}}>
-          <NavigationContainer>
+          <NavigationContainer linking={linking}> 
             <Stack.Navigator screenOptions={{
                 headerStyle: defaultStyles.navigationHeader.headerStyle,
                 headerTintColor: defaultStyles.navigationHeader.headerTintColor,
