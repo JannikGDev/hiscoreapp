@@ -23,8 +23,23 @@ const HomeScreen = ({navigation}) => {
         <Image source={require('../assets/hi-score_logo.png')}
         style={[styles.logo,{width: 400, height: 200}]}/>
 
-        <Spacer bottom={24} />
+        {userState.isAdmin ? (<Text style={styles.pageTitle}>Admin Mode</Text>) : (<></>)}
 
+        <Spacer bottom={24} />
+        
+        { //User Mode
+        (!userState.isAdmin) ? 
+            (<>
+             <View style = {{width: '50%'}}>
+            <Button
+            title="Profil"
+            color={styles.button.color}
+            onPress={() =>
+                navigation.navigate('Profile')
+            }
+            />
+        </View>
+        <Spacer bottom={12} />
         <View style = {{width: '50%'}}>
             <Button
             title="QR Code Scannen"
@@ -35,18 +50,6 @@ const HomeScreen = ({navigation}) => {
             />
         </View>
         <Spacer bottom={12} />
-    
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Profil"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('Profile')
-            }
-            />
-        </View>
-        <Spacer bottom={12} />
-
         <View style = {{width: '50%'}}>
             <Button
             title="Quests"
@@ -56,12 +59,20 @@ const HomeScreen = ({navigation}) => {
             }
             />
         </View>
-
-
-        {
-        (userState.isAdmin) ? 
+        {/*<Spacer bottom={12} />
+        <View style = {{width: '50%'}}>
+            <Button
+            title="Games"
+            color={styles.button.color}
+            onPress={() =>
+                navigation.navigate('GameList')
+            }
+            />
+        </View>
+        */}
+        </> )
+            : 
             (<>
-            <Spacer bottom={12} />
             <View style = {{width: '50%'}}>
             <Button
             title="Generate QR Code"
@@ -70,10 +81,31 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('QRCodeGenerator')
             }
             />
-        </View></> )
-            : 
-            (<></>)    
+        </View>
+        <Spacer bottom={12} />
+        <View style = {{width: '50%'}}>
+            <Button
+            title="Quests"
+            color={styles.button.color}
+            onPress={() =>
+                navigation.navigate('QuestList')
+            }
+            />
+        </View>
+        {/*<Spacer bottom={12} />
+        <View style = {{width: '50%'}}>
+            <Button
+            title="Games"
+            color={styles.button.color}
+            onPress={() =>
+                navigation.navigate('GameList')
+            }
+            />
+        </View>
+        */}
+            </>)    
         }   
+  
         <Spacer bottom={48} />
         <View style = {{width: '50%'}}>
             <Button
@@ -87,7 +119,6 @@ const HomeScreen = ({navigation}) => {
             }}
             />
         </View>
-
       </View>
     );
   };

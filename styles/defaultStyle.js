@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const defaultStyles = StyleSheet.create({
     container: {
       flex: 1,
+      width: '100%',
       backgroundColor: '#040205',
       alignItems: 'center',
       flexDirection: 'column'
@@ -31,7 +32,6 @@ const defaultStyles = StyleSheet.create({
     },
     inlineIcon: {
         resizeMode: 'contain',
-        flexDirection: 'row'
     },
     logo: {
         resizeMode: 'contain'

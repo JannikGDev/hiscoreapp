@@ -148,6 +148,13 @@ export const GetQuests = async () => {
   return result;
 };
 
+export const GetGames = async () => {
+  const request_url = API_BASE_URL+'/Game/gamelist';
+
+  var result = await SendRequest(request_url, 'GET', {}, null);
+  return result;
+};
+
 export const GenerateQRCode = async (questId) => {
   const request_url = API_BASE_URL+'/Quest/qrcode?id=' + questId;
 

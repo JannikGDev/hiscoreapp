@@ -18,6 +18,8 @@ import {GetUserData} from './shared/CompanionAPI.js'
 import { QRScannerScreen } from './screens/QRScannerScreen.js';
 import QRCodeGeneratorScreen from './screens/QRCodeGenerator.js';
 import Spacer from './shared/Spacer.js';
+import GameListScreen from './screens/GameListScreen.js';
+import HighscoreSubmitScreen from './screens/HighscoreSubmitScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,8 @@ export default function App() {
         Register: 'register',
         PasswordReset: 'pwreset',
         QRCodeGenerator: 'qrgen',
+        GameList: 'games',
+        HighscoreSubmit: 'highscoreSubmit'
       },
     };
   
@@ -74,31 +78,38 @@ export default function App() {
                 headerTitleStyle: defaultStyles.navigationHeader.headerTitleStyle
               }}>
 
-              {(
-                userState == null ?
-                (
-                  <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: 'Splash'}}/>
-                )
-
-                : userState.loggedIn ?  
-                // Screens only visible when not logged in
-                (<>
-                  <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
-                  <Stack.Screen name="Profile" component={ProfileScreen} />
-                  <Stack.Screen name="QRScanner" component={QRScannerScreen} />
-                  <Stack.Screen name="QuestList" component={QuestListScreen} />
-                </> ):
-                //Screens only visible when logged in
-                ( <>
-                  <Stack.Screen name="Login" component={LoginScreen} />
-                  <Stack.Screen name="Register" component={RegisterScreen} />
-                  <Stack.Screen name="PasswordReset" component={PasswordResetScreen} />
-                </> )
-              )}
-
-              {(userState != null && userState.isAdmin) ? (<>
-              <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen} />
+               {// Load Mode
+              (userState == null) ? (<>
+                <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: 'Splash'}}/>
+                </>) : <></>}
+              
+              {// Login Mode
+              (userState != null && !userState.loggedIn) ? (<>
+               <Stack.Screen name="Login" component={LoginScreen} />
+               <Stack.Screen name="Register" component={RegisterScreen} options={{title: 'Registrieren'}}/>
+               <Stack.Screen name="PasswordReset" component={PasswordResetScreen} options={{title: 'Passwort zurücksetzen'}}/>
               </>) : <></>}
+
+              {// UserMode Mode
+              (userState != null && userState.loggedIn && !userState.isAdmin) ? (<>
+                <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
+                <Stack.Screen name="Profile" component={ProfileScreen} options={{title: 'Profil'}}/>
+                <Stack.Screen name="QRScanner" component={QRScannerScreen} options={{title: 'QR Code Scannen'}}/>
+                <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
+                {/*<Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>*/}
+                {/*<Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/> */}
+              </>) : <></>}
+
+              {// Admin Mode
+              (userState != null && userState.loggedIn && userState.isAdmin) ? (<>
+              <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
+              <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
+              {/*<Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>*/}
+              <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen} />
+               {/*<Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/>*/}
+              </>) : <></>}
+
+
 
             </Stack.Navigator>
           </NavigationContainer>
