@@ -91,7 +91,7 @@ export const QRScannerScreen = ({navigation, route}) => {
         />
 
       <Camera
-        style={[StyleSheet.absoluteFillObject, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16, borderColor: 'blue', borderStyle: 'solid', borderWidth: 6, backgroundColor: 'red'}]}
+        style={[{height: 800, width: 400}, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16, borderColor: 'blue', borderStyle: 'solid', borderWidth: 6, backgroundColor: 'red'}]}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         barCodeScannerSettings={{
           barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
