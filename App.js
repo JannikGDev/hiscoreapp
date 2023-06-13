@@ -69,7 +69,7 @@ export default function App() {
     };
 
   return (
-      <View style={{flex: 1, backgroundColor: defaultStyles.container.backgroundColor}}>
+      <View style={{width: '100%', height: '100%', backgroundColor: defaultStyles.container.backgroundColor}}>
         <UserContext.Provider  value={{userState, setUserState}}>
           <NavigationContainer linking={linking}> 
             <Stack.Navigator screenOptions={{
@@ -96,17 +96,17 @@ export default function App() {
                 <Stack.Screen name="Profile" component={ProfileScreen} options={{title: 'Profil'}}/>
                 <Stack.Screen name="QRScanner" component={QRScannerScreen} options={{title: 'QR Code Scannen'}}/>
                 <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
-                {/*<Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>*/}
-                {/*<Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/> */}
+                <Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>
+                <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/> 
               </>) : <></>}
 
               {// Admin Mode
               (userState != null && userState.loggedIn && userState.isAdmin) ? (<>
               <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
               <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
-              {/*<Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>*/}
+              <Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>
               <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen} />
-               {/*<Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/>*/}
+              <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/>
               </>) : <></>}
 
 

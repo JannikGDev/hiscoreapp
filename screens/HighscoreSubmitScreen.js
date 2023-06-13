@@ -8,8 +8,8 @@ import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '
 const HighscoreSubmitScreen = ({navigation, route}) => {
 
     return (
-        <View styles={styles.pageContainer}>
-        <Text styles={styles.pageTitle}>
+    <View style={styles.pageContainer}>
+        <Text style={styles.pageTitle}>
             Highscore eintragen
         </Text>
     </View>

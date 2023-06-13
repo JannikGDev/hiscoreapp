@@ -14,10 +14,13 @@ export const QRScannerScreen = ({navigation, route}) => {
   const [message, setMessage] = useState("");
 
   const getBarCodeScannerPermissions = async () => {
-    await Camera.requestCameraPermissionsAsync();
+    console.log("Trying to get permission");
+    let response1 = await Camera.requestCameraPermissionsAsync();
+    console.log(response1);
     let response = await BarCodeScanner.requestPermissionsAsync();
     console.log(response);
     setHasPermission(response.status === 'granted');
+    
   };
   useEffect(() => {
     getBarCodeScannerPermissions();
@@ -83,7 +86,7 @@ export const QRScannerScreen = ({navigation, route}) => {
         />
 
       <Camera
-        style={[StyleSheet.absoluteFillObject, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16}]}
+        style={[StyleSheet.absoluteFillObject, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16, borderColor: 'blue', borderStyle: 'solid', borderWidth: 6, backgroundColor: 'red'}]}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         barCodeScannerSettings={{
           barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],

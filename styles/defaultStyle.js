@@ -15,6 +15,7 @@ const defaultStyles = StyleSheet.create({
         headerTintColor: '#fff',
         headerTitleStyle: {
             fontWeight: 'bold',
+            fontSize: 0,
         },
     },
     pageContainer: {
