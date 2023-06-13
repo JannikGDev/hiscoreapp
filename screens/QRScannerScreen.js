@@ -14,18 +14,12 @@ export const QRScannerScreen = ({navigation, route}) => {
   const [message, setMessage] = useState("");
 
   const getBarCodeScannerPermissions = async () => {
-
-    console.log("Is Camera available?");
-    let available = await Camera.isAvailableAsync();
-    console.log(available);
-
-    console.log("Trying to get permission");
-    let response1 = await Camera.requestCameraPermissionsAsync();
-    console.log(response1);
     let response = await BarCodeScanner.requestPermissionsAsync();
-    console.log(response);
-    setHasPermission(response.status === 'granted');
     
+    setHasPermission(response.status === 'granted');
+    if(!hasPermission) {
+      console.log(response);
+    }
   };
   useEffect(() => {
     getBarCodeScannerPermissions();
@@ -36,7 +30,7 @@ export const QRScannerScreen = ({navigation, route}) => {
 
     let result = await ScanCode(data);
 
-    console.log(result);
+    //console.log(result);
 
     if(result.statusCode == 401) {
       setMessage(`Der Code wurde bereits verwendet und ist nicht mehr gültig.`);
@@ -91,7 +85,7 @@ export const QRScannerScreen = ({navigation, route}) => {
         />
 
       <Camera
-        style={[{height: 800, width: 400}, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16, borderColor: 'blue', borderStyle: 'solid', borderWidth: 6, backgroundColor: 'red'}]}
+        style={[StyleSheet.absoluteFillObject, {marginTop: 96, marginLeft: 16, marginRight: 16, marginBottom: 16}]}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         barCodeScannerSettings={{
           barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],

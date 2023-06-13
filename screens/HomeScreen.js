@@ -59,7 +59,7 @@ const HomeScreen = ({navigation}) => {
             }
             />
         </View>
-        <Spacer bottom={12} />
+        {/*<Spacer bottom={12} />
         <View style = {{width: '50%'}}>
             <Button
             title="Games"
@@ -68,7 +68,7 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('GameList')
             }
             />
-        </View>
+        </View>*/}
         
         </> )
             : 
@@ -92,7 +92,7 @@ const HomeScreen = ({navigation}) => {
             }
             />
         </View>
-        <Spacer bottom={12} />
+         {/*<Spacer bottom={12} />
         <View style = {{width: '50%'}}>
             <Button
             title="Games"
@@ -101,7 +101,7 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('GameList')
             }
             />
-        </View>
+        </View>*/}
             </>)    
         }   
   
