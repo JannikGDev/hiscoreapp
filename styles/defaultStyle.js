@@ -64,9 +64,6 @@ const defaultStyles = StyleSheet.create({
     },
     button: {
         color: '#3D3F56',
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
     },
     buttonOpen: {
         backgroundColor: '#3D3F56',
@@ -122,6 +119,10 @@ const defaultStyles = StyleSheet.create({
     },
     questItemDone: {
         backgroundColor: '#323340',
+    },
+    camera: {
+        widt: '100%',
+        height: '100%',
     },
 
   });

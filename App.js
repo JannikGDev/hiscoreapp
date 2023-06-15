@@ -26,6 +26,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   const [userState, setUserState] = React.useState(null);
+  const [game, setGame] = React.useState(null);
 
     //Check if logged in
     React.useEffect(() => {

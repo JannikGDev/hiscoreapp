@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, Pressable } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
@@ -8,6 +8,27 @@ import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '
 const GameListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
     const [gameItems, setGameItems] = useState([]);
+
+    const GameListItem = ({entry, navigation}) => 
+    {
+        let game = entry.item;
+
+        return  (
+            <Pressable style={[styles.listItem, {padding: 0}]}
+            onPress={() => {
+                navigation.navigate('HighscoreSubmit', {game: game});
+            }}>
+            <View style={[styles.listItem, {flexDirection: 'column'}]}>
+                <View style={{flexDirection: 'row', flex: 2}}>
+                    <View style={{flexDirection: 'column', flex: 2}}>
+                        <Text style={[styles.text, styles.textBold, {flex: 1}]}>{game.name}</Text>
+                    </View>
+                </View>
+            </View>
+            </Pressable>
+        );
+    }
+
 
     useEffect( () => {
         // declare the data fetching function
@@ -50,25 +71,7 @@ const GameListScreen = ({navigation, route}) => {
     }
 };
 
-export const GameListItem = ({entry, navigation}) => 
-{
-    let game = entry.item;
 
-    return  (
-        <Pressable style={[styles.listItem, {padding: 0}]}
-        onPress={() => {
-            navigation.navigate('HighscoreSubmit')
-        }}>
-        <View style={[styles.listItem, {flexDirection: 'column'}]}>
-            <View style={{flexDirection: 'row', flex: 2}}>
-                <View style={{flexDirection: 'column', flex: 2}}>
-                    <Text style={[styles.text, styles.textBold, {flex: 1}]}>{game.name}</Text>
-                </View>
-             </View>
-        </View>
-        </Pressable>
-      );
-}
 
 
 export default GameListScreen;

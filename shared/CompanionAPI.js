@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://continue.sodacookie.net/api';
 
 const SendRequest = async (url, method, headers, body, onSuccessMessage = "Action successful") => {
 
-  const response = await fetch(url, {
+  const options = {
     method: method,
     headers: {
       ...headers,
@@ -13,7 +13,11 @@ const SendRequest = async (url, method, headers, body, onSuccessMessage = "Actio
       "Access-Control-Allow-Headers": "X-Requested-With"
     },
     body: body,
-  }).catch(error => {
+  };
+
+  delete options.headers['Content-Type'];
+
+  const response = await fetch(url, options).catch(error => {
     console.error(error);
     return {message: error, success: false, statusCode: 400};
   });
@@ -148,6 +152,39 @@ export const GetQuests = async () => {
   return result;
 };
 
+export const UploadHighscore = async (gameId, imageUri, score) => {
+  const request_url = API_BASE_URL+'/Highscore?gameId='+gameId;
+
+  console.log({id: gameId, score: score, uri: imageUri});
+
+  let key = await GetJWTKey();
+  if(key == null || key.length == 0)
+    return {success: false, message: "Not logged in!"};
+
+  let headers = { 
+                  'Authorization': 'Bearer '+key,
+  };
+
+  let blob = dataURItoBlob(imageUri);
+
+  const image = {
+    uri: imageUri,
+    type: 'image/png',
+    name: 'highscore' + '_' + Date.now() + '.png'
+  };
+
+  console.log(blob);
+
+  const formData = new FormData();
+  formData.append('imageFile', blob);
+
+  console.log(formData);
+
+  var result = await SendRequest(request_url, 'POST', headers, formData);
+  return result;
+};
+
+
 export const GetGames = async () => {
   const request_url = API_BASE_URL+'/Game/gamelist';
 
@@ -207,4 +244,24 @@ export const ChangeAvatar = async (newAvatarNum) => {
   return result;
 };
 
+
+const dataURItoBlob = (dataURI) => {
+  // convert base64/URLEncoded data component to raw binary data held in a string
+  var byteString;
+  if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+  else
+      byteString = unescape(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+  // write the bytes of the string to a typed array
+  var ia = new Uint8Array(byteString.length);
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ia], {type:mimeString});
+}
 

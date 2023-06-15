@@ -50,7 +50,7 @@ const QRCodeGeneratorScreen = ({navigation, route}) => {
             }}
             />
               <Button
-            title="Back"
+            title="Zurück"
             color={styles.button.color}
             onPress={() =>setImage("")}
             />

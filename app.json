@@ -6,7 +6,15 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "scheme": "https"
+    "scheme": "https",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Lade Beweisfotos deiner Highscores hoch."
+        }
+      ]
+    ]
   },
   "permissions": [
     "CAMERA"

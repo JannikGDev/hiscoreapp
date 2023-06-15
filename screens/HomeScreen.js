@@ -3,7 +3,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import { LogOut, IsLoggedIn } from '../shared/GlobalStorage.js';
-import { UserContext } from '../shared/Contexts';
+import { UserContext, GameContext } from '../shared/Contexts';
 import { GetUserData } from '../shared/CompanionAPI';
 
 
@@ -59,7 +59,7 @@ const HomeScreen = ({navigation}) => {
             }
             />
         </View>
-        {/*<Spacer bottom={12} />
+        <Spacer bottom={12} />
         <View style = {{width: '50%'}}>
             <Button
             title="Games"
@@ -68,7 +68,7 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('GameList')
             }
             />
-        </View>*/}
+        </View>
         
         </> )
             : 
@@ -92,7 +92,7 @@ const HomeScreen = ({navigation}) => {
             }
             />
         </View>
-         {/*<Spacer bottom={12} />
+         <Spacer bottom={12} />
         <View style = {{width: '50%'}}>
             <Button
             title="Games"
@@ -101,7 +101,7 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('GameList')
             }
             />
-        </View>*/}
+        </View>
             </>)    
         }   
   

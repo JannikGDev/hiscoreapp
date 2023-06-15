@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Button, TextInput, SafeAreaView, Modal, Pressable } from 'react-native';
-import defaultStyles from '../styles/defaultStyle.js';
+import styles from '../styles/defaultStyle.js';
 
 
 
@@ -12,13 +12,13 @@ const MessageBox = props => {
         onRequestClose={() => {
             setIsOpen(!isOpen);
         }}>
-        <View style={defaultStyles.centeredView}>
-          <View style={defaultStyles.modalView}>
-            <Text style={defaultStyles.modalText}>{props.text}</Text>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{props.text}</Text>
             <Pressable
-              style={[defaultStyles.button, defaultStyles.buttonClose]}
+              style={[{backgroundColor: styles.button.color, padding: 6}]}
               onPress={() => {if(props.onClose) {props.onClose();}}}>
-              <Text style={defaultStyles.textStyle}>OK</Text>
+              <Text style={styles.text}>OK</Text>
             </Pressable>
           </View>
         </View>
