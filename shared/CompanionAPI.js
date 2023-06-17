@@ -2,7 +2,7 @@ import { SetLoggedIn, GetJWTKey } from './GlobalStorage.js'
 
 const API_BASE_URL = 'https://app.hi-score.org/api';
 
-const SendRequest = async (url, method, headers, body, onSuccessMessage = "Action successful") => {
+const SendRequest = async (url, method, headers, body, onSuccessMessage = "Action successful", deleteContentType = false) => {
 
   const options = {
     method: method,
@@ -14,8 +14,10 @@ const SendRequest = async (url, method, headers, body, onSuccessMessage = "Actio
     },
     body: body,
   };
+  if(deleteContentType) {
+    delete options.headers['Content-Type'];
+  }
 
-  delete options.headers['Content-Type'];
 
   const response = await fetch(url, options).catch(error => {
     console.error(error);
@@ -180,7 +182,7 @@ export const UploadHighscore = async (gameId, imageUri, score) => {
 
   console.log(formData);
 
-  var result = await SendRequest(request_url, 'POST', headers, formData);
+  var result = await SendRequest(request_url, 'POST', headers, formData,"success", true);
   return result;
 };
 
