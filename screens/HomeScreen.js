@@ -5,7 +5,7 @@ import Spacer from '../shared/Spacer'
 import { LogOut, IsLoggedIn } from '../shared/GlobalStorage.js';
 import { UserContext, GameContext } from '../shared/Contexts';
 import { GetUserData } from '../shared/CompanionAPI';
-
+import { NavButton } from '../shared/Controls';
 
 
 const HomeScreen = ({navigation}) => {
@@ -17,96 +17,31 @@ const HomeScreen = ({navigation}) => {
 
     const {userState, setUserState} = useContext(UserContext);
 
+    let userMode = !userState.isAdmin;
+    let adminMode = userState.isAdmin;
+
     return (
         <View style={styles.pageContainer}>
 
         <Image source={require('../assets/hi-score_logo.png')}
         style={[styles.logo,{width: 400, height: 200}]}/>
 
-        {userState.isAdmin ? (<Text style={styles.pageTitle}>Admin Mode</Text>) : (<></>)}
+        {adminMode && (<Text style={styles.pageTitle}>Admin Mode</Text>)}
 
         <Spacer bottom={24} />
-        
-        { //User Mode
-        (!userState.isAdmin) ? 
-            (<>
-             <View style = {{width: '50%'}}>
-            <Button
-            title="Profil"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('Profile')
-            }
-            />
-        </View>
-        <Spacer bottom={12} />
-        <View style = {{width: '50%'}}>
-            <Button
-            title="QR Code Scannen"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('QRScanner')
-            }
-            />
-        </View>
-        <Spacer bottom={12} />
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Quests"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('QuestList')
-            }
-            />
-        </View>
-        <Spacer bottom={12} />
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Games"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('GameList')
-            }
-            />
-        </View>
-        
-        </> )
-            : 
-            (<>
-            <View style = {{width: '50%'}}>
-            <Button
-            title="Generate QR Code"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('QRCodeGenerator')
-            }
-            />
-        </View>
-        <Spacer bottom={12} />
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Quests"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('QuestList')
-            }
-            />
-        </View>
-         <Spacer bottom={12} />
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Games"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('GameList')
-            }
-            />
-        </View>
-            </>)    
-        }   
-  
+
+        {userMode && <NavButton text={"Profil"} navigation={navigation} navTarget={'Profile'}/>}
+
+        {userMode && <NavButton text={"QR Code Scannen"} navigation={navigation} navTarget={'QRScanner'}/>}
+
+        <NavButton text={"Quests"} navigation={navigation} navTarget={'QuestList'}/>
+
+        <NavButton text={"Games"} navigation={navigation} navTarget={'GameList'}/>
+
+        {adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} navTarget={'QRCodeGenerator'}/>}
+
         <Spacer bottom={48} />
-        <View style = {{width: '50%'}}>
+        <View style = {styles.navButton}>
             <Button
             title="Logout"
             color={styles.button.color}

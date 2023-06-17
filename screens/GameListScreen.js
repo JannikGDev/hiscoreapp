@@ -16,7 +16,7 @@ const GameListScreen = ({navigation, route}) => {
         return  (
             <Pressable style={[styles.listItem, {padding: 0}]}
             onPress={() => {
-                navigation.navigate('HighscoreSubmit', {game: game});
+                navigation.navigate('HighscoreList', {game: game});
             }}>
             <View style={[styles.listItem, {flexDirection: 'column'}]}>
                 <View style={{flexDirection: 'row', flex: 2}}>
@@ -34,7 +34,6 @@ const GameListScreen = ({navigation, route}) => {
         // declare the data fetching function
         const fetchData = async () => {
             let result = await GetGames();
-            console.log(result);
             if(!result.success) {
                 console.log(result);
                 return;

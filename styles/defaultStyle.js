@@ -71,6 +71,10 @@ const defaultStyles = StyleSheet.create({
     buttonClose: {
         backgroundColor: '#3D3F56',
     },
+    navButton: {
+        width: '59%',
+        margin: 6,
+    },
     textInput: {
         height: 40,
         marginBottom: 12,

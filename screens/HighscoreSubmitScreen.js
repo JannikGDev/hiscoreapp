@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext } from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable, TextInput } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import * as ImagePicker from 'expo-image-picker';
@@ -15,7 +15,8 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
     const [showCam, setShowCam] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState("");
-    const { game } = route.params;
+    const [score, setScore] = useState(0);
+    const {game} = route.params;
 
     let camera;
 
@@ -63,7 +64,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
     };
 
     const SendHighscore = async () => {
-       let response =  await UploadHighscore(game.id, image, 1000);
+       let response =  await UploadHighscore(game.id, image, score);
         
        if(response.success) {
         setShowMessage(true);
@@ -84,6 +85,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
             show={showMessage}
             onClose={() => {
                 setShowMessage(false);    
+                navigation.navigate('GameList', route.params)
             }}
         />
 
@@ -92,10 +94,19 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         </Text>
 
         <Text style={styles.text}>
-            Nimm ein Foto auf um deinen Highscore festzuhalten. Mach ein Foto, auf dem der Highscore und dein Username groß und klar leserlich sind.
+            Trage hier deinen erreichen Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
         </Text>
 
-
+        <SafeAreaView style = {{marginTop: 16}}>
+            <TextInput
+                style={styles.textInput}
+                onChangeText={setScore}
+                placeholder="Score"
+                value={score}
+                keyboardType='numeric'
+                textContentType='none'
+            />
+        </SafeAreaView>
         
         {!showCam &&
         <>

@@ -192,6 +192,13 @@ export const GetGames = async () => {
   return result;
 };
 
+export const GetHighscores = async (gameId) => {
+  const request_url = API_BASE_URL+'/Highscore?gameid='+gameId;
+
+  var result = await SendRequest(request_url, 'GET', {}, null);
+  return result;
+};
+
 export const GenerateQRCode = async (questId) => {
   const request_url = API_BASE_URL+'/Quest/qrcode?id=' + questId;
 

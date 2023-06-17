@@ -14,7 +14,7 @@ export const QRScannerScreen = ({navigation, route}) => {
   const [message, setMessage] = useState("");
 
   const getBarCodeScannerPermissions = async () => {
-    let response = await BarCodeScanner.requestPermissionsAsync();
+    let response = await Camera.requestCameraPermissionsAsync();
     
     setHasPermission(response.status === 'granted');
     if(!hasPermission) {

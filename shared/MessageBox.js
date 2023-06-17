@@ -11,7 +11,9 @@ const MessageBox = props => {
         visible={props.show}
         onRequestClose={() => {
             setIsOpen(!isOpen);
-        }}>
+        }}
+        presentationStyle='fullScreen'
+        >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>{props.text}</Text>

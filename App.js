@@ -20,6 +20,7 @@ import QRCodeGeneratorScreen from './screens/QRCodeGenerator.js';
 import Spacer from './shared/Spacer.js';
 import GameListScreen from './screens/GameListScreen.js';
 import HighscoreSubmitScreen from './screens/HighscoreSubmitScreen.js';
+import HighscoreListScreen from './screens/HighscoreListScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,7 +60,8 @@ export default function App() {
         PasswordReset: 'pwreset',
         QRCodeGenerator: 'qrgen',
         GameList: 'games',
-        HighscoreSubmit: 'highscoreSubmit'
+        HighscoreSubmit: 'highscoreSubmit',
+        HighscoreList: 'highscorelist'
       },
     };
   
@@ -80,35 +82,36 @@ export default function App() {
               }}>
 
                {// Load Mode
-              (userState == null) ? (<>
-                <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: 'Splash'}}/>
-                </>) : <></>}
+              (userState == null) && (<>
+                <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: ''}}/>
+                </>)}
               
               {// Login Mode
-              (userState != null && !userState.loggedIn) ? (<>
+              (userState != null && !userState.loggedIn) && (<>
                <Stack.Screen name="Login" component={LoginScreen} />
-               <Stack.Screen name="Register" component={RegisterScreen} options={{title: 'Registrieren'}}/>
-               <Stack.Screen name="PasswordReset" component={PasswordResetScreen} options={{title: 'Passwort zurücksetzen'}}/>
-              </>) : <></>}
+               <Stack.Screen name="Register" component={RegisterScreen} options={{title: ''}}/>
+               <Stack.Screen name="PasswordReset" component={PasswordResetScreen} options={{title: ''}}/>
+              </>)}
 
               {// UserMode Mode
-              (userState != null && userState.loggedIn && !userState.isAdmin) ? (<>
-                <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
-                <Stack.Screen name="Profile" component={ProfileScreen} options={{title: 'Profil'}}/>
-                <Stack.Screen name="QRScanner" component={QRScannerScreen} options={{title: 'QR Code Scannen'}}/>
-                <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
-                <Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>
-                <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/> 
-              </>) : <></>}
+              (userState != null && userState.loggedIn && !userState.isAdmin) && (<>
+                <Stack.Screen name="Home"component={HomeScreen} options={{title: ''}}/>
+                <Stack.Screen name="Profile" component={ProfileScreen} options={{title: ''}}/>
+                <Stack.Screen name="QRScanner" component={QRScannerScreen} options={{title: ''}}/>
+                <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: ''}}/>
+                <Stack.Screen name="GameList" component={GameListScreen} options={{title: ''}}/>
+                <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>
+                <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: ''}}/> 
+              </>)}
 
               {// Admin Mode
-              (userState != null && userState.loggedIn && userState.isAdmin) ? (<>
-              <Stack.Screen name="Home"component={HomeScreen} options={{title: 'Home'}}/>
-              <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: 'Quests'}}/>
-              <Stack.Screen name="GameList" component={GameListScreen} options={{title: 'Games'}}/>
-              <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen} />
-              <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: 'Highscore eintragen'}}/>
-              </>) : <></>}
+              (userState != null && userState.loggedIn && userState.isAdmin) && (<>
+              <Stack.Screen name="Home"component={HomeScreen} options={{title: ''}}/>
+              <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: ''}}/>
+              <Stack.Screen name="GameList" component={GameListScreen} options={{title: ''}}/>
+              <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen}  options={{title: ''}}/>
+              <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>
+              </>)}
 
 
 
