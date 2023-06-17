@@ -155,7 +155,7 @@ export const GetQuests = async () => {
 };
 
 export const UploadHighscore = async (gameId, imageUri, score) => {
-  const request_url = API_BASE_URL+'/Highscore?gameId='+gameId;
+  const request_url = API_BASE_URL+'/Highscore?gameId='+gameId+'&score='+score;
 
   console.log({id: gameId, score: score, uri: imageUri});
 
