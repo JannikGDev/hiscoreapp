@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Button, Pressable, ActivityIndicator } from 'react-native';
 import MessageBox from '../shared/MessageBox'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import styles from '../styles/defaultStyle';
@@ -12,6 +12,7 @@ export const QRScannerScreen = ({navigation, route}) => {
   const [scanned, setScanned] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getBarCodeScannerPermissions = async () => {
     let response = await Camera.requestCameraPermissionsAsync();
@@ -26,35 +27,39 @@ export const QRScannerScreen = ({navigation, route}) => {
   }, []);
 
   const handleBarCodeScanned = async ({ type, data }) => {
+    setLoading(true);
     setScanned(true);
 
     let result = await ScanCode(data);
 
-    //console.log(result);
-
     if(result.statusCode == 401) {
       setMessage(`Der Code wurde bereits verwendet und ist nicht mehr gültig.`);
       setShowMessage(true);
+      setLoading(false);
       return;
     }
     if(result.statusCode == 404) {
       setMessage(`Der QR Code ist kein gültiger HI-SCORE Code.`);
       setShowMessage(true);
+      setLoading(false);
       return;
     }
     if(result.statusCode == 409) {
       setMessage(`Der Quest dieses QR Codes ist nicht aktiv.`);
       setShowMessage(true);
+      setLoading(false);
       return;
     }
     if(result.statusCode == 400) {
       setMessage(`Du kannst diese Quest nicht nochmal absolvieren.`);
       setShowMessage(true);
+      setLoading(false);
       return;
     }
 
     setMessage(`Du hast die Quest ${result.response.name} absolviert! Du hast ${result.response.experience} EXP bekommen!`);
     setShowMessage(true);
+    setLoading(false);
   };
 
   if (hasPermission === null || hasPermission === false) {
@@ -73,6 +78,9 @@ export const QRScannerScreen = ({navigation, route}) => {
 
   return (
     <View style={styles.pageContainer}>
+
+      {loading && <ActivityIndicator style={styles.loader} />}
+
       <Text style={styles.pageTitle}>QR Code Scanner</Text>
       
       <MessageBox 

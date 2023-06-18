@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext } from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable, TextInput, ActivityIndicator } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import * as ImagePicker from 'expo-image-picker';
@@ -16,28 +16,47 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState("");
     const [score, setScore] = useState(0);
+    const [loading, setLoading] = useState(false);
     const {game} = route.params;
 
     let camera;
-
-
-
     const pickImage = async () => {
+
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,
-          aspect: [4, 3],
+          allowsMultipleSelection: false,
           quality: 1,
         });
-    
-        if (!result.canceled) {
-          setImage(result.assets[0].uri);
+
+        if (result.canceled || !result.assets || !result.assets[0]) {
+            return;
         }
+
+        setLoading(true);
+
+        let pickedImage = result.assets[0];
+
+
+
+        let longSide = Math.max(pickedImage.width, pickedImage.height)
+
+        let scale = 1080/longSide;
+
+        let manipResult = await manipulateAsync(
+            pickedImage.uri,
+            [{ resize: {width: pickedImage.width*scale, height: pickedImage.height*scale} }]
+          );
+
+        setImage(manipResult.uri);
+        setLoading(false);
       };
 
     const OpenCamera = async () => {
         let response = await Camera.requestCameraPermissionsAsync();
+
+        console.log(response);
 
         if(response && response.status === 'granted') {
             setShowCam(true);
@@ -48,7 +67,8 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         if(camera == null)
             return;
 
-        let response = await camera.takePictureAsync()
+        let response = await camera.takePictureAsync();
+        setLoading(true);
 
         let longSide = Math.max(response.width, response.height)
 
@@ -61,24 +81,29 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
 
         setImage(manipResult.uri);
         setShowCam(false);
+        setLoading(false);
     };
 
     const SendHighscore = async () => {
-       let response =  await UploadHighscore(game.id, image, score);
+        setLoading(true);
+        let response =  await UploadHighscore(game.id, image, score);
         
-       if(response.success) {
+        if(response.success) {
         setShowMessage(true);
         setMessage("Der Highscore wurde erfolgreich hochgeladen");
-       }
-       else {
+        }
+        else {
         setShowMessage(true);
         setMessage(response.message);
-       }
+        }
+        setLoading(false);
     };
 
     
     return (
     <View style={styles.pageContainer}>
+
+        {loading && <ActivityIndicator style={styles.loader}/>}
 
         <MessageBox 
             text={message}
