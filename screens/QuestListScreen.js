@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
-import {GetQuests} from '../shared/CompanionAPI.js'
+import {GetQuests} from '../shared/HiscoreAPI.js'
 import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '../shared/Utility.js'
 
 const QuestListScreen = ({navigation, route}) => {
@@ -19,6 +19,7 @@ const QuestListScreen = ({navigation, route}) => {
             }
                 
             let questList = result.response;
+            console.log(questList);
             setQuestItems(questList);
             setInitiated(true);
         }
@@ -48,7 +49,10 @@ const QuestListScreen = ({navigation, route}) => {
 
 export const QuestListItem = ({entry}) => 
 {
+
     let quest = entry.item;
+
+
 
     return  (
         <View style={[styles.listItem, {flexDirection: 'column'}, quest.done ? styles.questItemDone : styles.questItemOpen]}>

@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import MessageBox from '../shared/MessageBox'
 import { Camera, CameraType } from 'expo-camera';
 import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
-import { UploadHighscore } from '../shared/CompanionAPI';
+import { UploadHighscore } from '../shared/HiscoreAPI';
 
 
 const HighscoreSubmitScreen = ({navigation, route}) => {
@@ -52,16 +52,6 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         setImage(manipResult.uri);
         setLoading(false);
       };
-
-    const OpenCamera = async () => {
-        let response = await Camera.requestCameraPermissionsAsync();
-
-        console.log(response);
-
-        if(response && response.status === 'granted') {
-            setShowCam(true);
-        }
-    };
 
     const TakePicture = async () => {
         if(camera == null)
@@ -122,9 +112,9 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
             Trage hier deinen erreichen Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
         </Text>
 
-        <SafeAreaView style = {{marginTop: 16}}>
+        <SafeAreaView style = {{marginTop: 16,flexDirection: 'row', flex: 0.2}}>
             <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, {width: '60%'}]}
                 onChangeText={setScore}
                 placeholder="Score"
                 value={score}
@@ -136,24 +126,16 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         {!showCam &&
         <>
         <Spacer top={32}/>
-        <View style={[{flexDirection: 'row', width: '80%', flex: 0.2}]}>  
-            <View style = {{width: '50%'}}>
-            <Button
-            title="Foto aufnehmen"
-            color={styles.button.color}
-            onPress={OpenCamera}
-            />
-            </View>
+        <View style={[{flexDirection: 'row', flex: 0.2}]}>  
 
-            <Spacer left={32} />
-
-            <View style = {{width: '50%'}}>
+            <SafeAreaView>
                 <Button
+                style={[{width: '60%'}]}
                 title="Foto aus Gallerie wählen"
                 color={styles.button.color}
                 onPress={pickImage}
                 />
-            </View>
+            </SafeAreaView>
         </View>
         </>
         }
@@ -174,19 +156,6 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         style={{ flex: 1, margin: 16}} />
         </View>
         </>
-        }
-
-        {showCam && 
-            <Camera 
-            style={[{marginTop: 16, marginLeft: 16, marginRight: 16, marginBottom: 16, alignItems: 'center', flex: 1, width:'80%'}]}
-            ref={cam => camera = cam}
-            pictureSize=''
-            onPictureTak
-            >
-            <TouchableOpacity style={{backgroundColor: styles.button.color, display: 'inline-block', padding: 6, marginTop: 16}} onPress={TakePicture}>
-                <Text style={[styles.text,styles.textBold]}>Foto aufnehmen</Text>
-                    </TouchableOpacity>
-            </Camera>
         }
     </View>
     );

@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, Pressable } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
-import {GetGames} from '../shared/CompanionAPI.js'
+import {GetGames} from '../shared/HiscoreAPI.js'
 import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '../shared/Utility.js'
 
 const GameListScreen = ({navigation, route}) => {

@@ -4,7 +4,7 @@ import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import { LogOut, IsLoggedIn } from '../shared/GlobalStorage.js';
 import { UserContext, GameContext } from '../shared/Contexts';
-import { GetUserData } from '../shared/CompanionAPI';
+import { GetUserData } from '../shared/HiscoreAPI';
 import { NavButton } from '../shared/Controls';
 
 

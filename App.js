@@ -14,14 +14,16 @@ import { UserContext } from './shared/Contexts.js';
 import { IsLoggedIn } from './shared/GlobalStorage.js';
 import SplashScreen from './screens/SplashScreen.js';
 import PasswordResetScreen from './screens/PasswordResetScreen.js';
-import {GetUserData} from './shared/CompanionAPI.js'
+import {GetUserData} from './shared/HiscoreAPI.js'
 import { QRScannerScreen } from './screens/QRScannerScreen.js';
 import QRCodeGeneratorScreen from './screens/QRCodeGenerator.js';
 import Spacer from './shared/Spacer.js';
 import GameListScreen from './screens/GameListScreen.js';
 import HighscoreSubmitScreen from './screens/HighscoreSubmitScreen.js';
 import HighscoreListScreen from './screens/HighscoreListScreen.js';
+import { Logs } from 'expo'
 
+Logs.enableExpoCliLogging()
 const Stack = createNativeStackNavigator();
 
 export default function App() {

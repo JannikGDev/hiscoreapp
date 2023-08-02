@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, Pressable, ActivityIndicator } from 're
 import MessageBox from '../shared/MessageBox'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import styles from '../styles/defaultStyle';
-import {ScanCode} from '../shared/CompanionAPI.js'
+import {ScanCode} from '../shared/HiscoreAPI.js'
 import { Camera } from 'expo-camera';
 
 

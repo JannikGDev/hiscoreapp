@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, Button, Pressable, ImageBackground } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
-import {GetUserData, ChangeAvatar} from '../shared/CompanionAPI.js'
+import {GetUserData, ChangeAvatar} from '../shared/HiscoreAPI.js'
 import Avatars from '../shared/Avatars';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -35,7 +35,7 @@ const ProfileScreen = ({navigation, route}) => {
             let userData = result.response;
             setUserName(userData.userName);
             setLevel(userData.level);
-            setCurrentExp(userData.experience);
+            setCurrentExp(userData.totalEXP);
             setNextLevelExp(userData.nextLevelExperience);
             setDayExp(userData.rawExperienceToday);
             setMultiplier(userData.dayMultiplier);

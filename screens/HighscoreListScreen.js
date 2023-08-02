@@ -1,7 +1,7 @@
 import styles from '../styles/defaultStyle';
 import React, {useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable } from 'react-native';
-import {GetHighscores, GetUserData} from '../shared/CompanionAPI.js';
+import {GetHighscores, GetUserData} from '../shared/HiscoreAPI.js';
 import Moment from 'moment';
 import { NavButton } from '../shared/Controls';
 import Spacer from '../shared/Spacer';

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import MessageBox from '../shared/MessageBox'
-import { PasswordResetRequest, PasswordResetSubmit } from '../shared/CompanionAPI'
+import { PasswordResetRequest, PasswordResetSubmit } from '../shared/HiscoreAPI'
 
 
 

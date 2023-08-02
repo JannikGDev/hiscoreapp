@@ -66,7 +66,6 @@ export const Register = async (userName, password, mail) => {
       password: password,
       mail: mail
     });
-
   let result = await SendRequest(request_url, 'POST', {'Content-Type': 'application/json'}, data, "Account was registered!");
 
   return result;
@@ -112,7 +111,23 @@ export const PasswordResetSubmit = async (code, newPassword) => {
 };
 
 
-
+/** 
+* Returns UserModel
+* public Guid Id
+* public string UserName
+* public string Mail
+* public long TotalEXP
+* public float DayMultiplier
+* public long RawExperienceToday
+* public long EarnedEXPToday
+* public int Level
+* public long NextLevelExperience
+* public DateTime CreationDate 
+* public bool Active 
+* public DateTime LastActivity 
+* public bool IsAdmin
+* public int AvatarNumber 
+*/
 export const GetUserData = async () => {
   const request_url = API_BASE_URL+'/User';
 

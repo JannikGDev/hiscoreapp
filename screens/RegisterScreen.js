@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import MessageBox from '../shared/MessageBox'
-import { Register } from '../shared/CompanionAPI'
+import { Register } from '../shared/HiscoreAPI'
 
 
 

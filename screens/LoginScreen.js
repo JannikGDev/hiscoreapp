@@ -3,7 +3,7 @@ import React, {useState, useContext} from 'react';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import MessageBox from '../shared/MessageBox'
-import { Login, GetUserData } from '../shared/CompanionAPI'
+import { Login, GetUserData } from '../shared/HiscoreAPI'
 import { UserContext } from '../shared/Contexts';
 import { IsLoggedIn } from '../shared/GlobalStorage.js'
 

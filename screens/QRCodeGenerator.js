@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import {Pressable, StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
-import {GetQuests, GenerateQRCode} from '../shared/CompanionAPI.js'
+import {GetQuests, GenerateQRCode} from '../shared/HiscoreAPI.js'
 import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '../shared/Utility.js'
 
 
