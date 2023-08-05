@@ -52,8 +52,6 @@ export const QuestListItem = ({entry}) =>
 
     let quest = entry.item;
 
-
-
     return  (
         <View style={[styles.listItem, {flexDirection: 'column'}, quest.done ? styles.questItemDone : styles.questItemOpen]}>
             
