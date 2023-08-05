@@ -17,7 +17,7 @@ const MessageBox = props => {
           <View style={styles.modalView}>
             <Text style={styles.modalText}>{props.text}</Text>
             <Pressable
-              style={[{backgroundColor: styles.button.color, padding: 6}]}
+              style={[{backgroundColor: styles.button.color, padding: 20, paddingLeft: 50, paddingRight:50}]}
               onPress={() => {if(props.onClose) {props.onClose();}}}>
               <Text style={styles.text}>OK</Text>
             </Pressable>

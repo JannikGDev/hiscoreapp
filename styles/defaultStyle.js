@@ -35,7 +35,9 @@ const defaultStyles = StyleSheet.create({
         resizeMode: 'contain',
     },
     logo: {
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        width: '100%',
+        
     },
     text: {
         color: '#F9FDFC',
@@ -92,7 +94,7 @@ const defaultStyles = StyleSheet.create({
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding: 35,
+        padding: 25,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {

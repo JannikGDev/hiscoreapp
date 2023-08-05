@@ -24,12 +24,14 @@ const LoginScreen = ({navigation, route}) => {
     return (
         <View style={styles.pageContainer}> 
 
-        <Text style={styles.pageTitle}>Login</Text>
+        <Image style={styles.logo} source={require('../assets/hi-score_logo.png')} />
+
+        <Text style={styles.pageTitle}>Einloggen</Text>
 
         <Spacer bottom={24} />
         <SafeAreaView style = {{width: '80%'}}>
         <Text style={styles.text}>
-            Gebe deinen Benutzernamen und Passwort ein um dich einzuloggen oder registriere dich wenn du noch keinen Account hast.
+            Gebe deinen Benutzernamen und Passwort ein um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
             </Text>
 
         <Spacer bottom={12} />
@@ -75,7 +77,7 @@ const LoginScreen = ({navigation, route}) => {
 
                 if(userName.length == 0 || password.length == 0)
                 {
-                    setMessage("Bitte gebe einen Benutzernamen und Passwort ein.");
+                    setMessage("Bitte gib einen Benutzernamen und Passwort ein.");
                     setShowMessage(true);
                     return;
                 }
