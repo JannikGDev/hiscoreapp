@@ -44,7 +44,6 @@ const SendRequest = async (url, method, headers, body, onSuccessMessage = "Actio
   }
 
 
-
   let responseBody = await response.json();
   //console.log("Request Response Body: ");
   //console.log(responseBody);
@@ -111,23 +110,6 @@ export const PasswordResetSubmit = async (code, newPassword) => {
 };
 
 
-/** 
-* Returns UserModel
-* public Guid Id
-* public string UserName
-* public string Mail
-* public long TotalEXP
-* public float DayMultiplier
-* public long RawExperienceToday
-* public long EarnedEXPToday
-* public int Level
-* public long NextLevelExperience
-* public DateTime CreationDate 
-* public bool Active 
-* public DateTime LastActivity 
-* public bool IsAdmin
-* public int AvatarNumber 
-*/
 export const GetUserData = async () => {
   const request_url = API_BASE_URL + '/User';
 
@@ -169,10 +151,17 @@ export const GetQuests = async () => {
   return result;
 };
 
+export const GetImage = async (imageId) => {
+  const request_url = API_BASE_URL + '/Image?imageId=' + imageId;
+
+  var result = await SendRequest(request_url, 'GET', {}, null);
+  return result;
+}
+
 export const UploadHighscore = async (gameId, imageUri, score) => {
   const request_url = API_BASE_URL + '/Highscore?gameId=' + gameId + '&score=' + score;
 
-  console.log({ id: gameId, score: score, uri: imageUri });
+  //console.log({ id: gameId, score: score, uri: imageUri });
 
   let key = await GetJWTKey();
   if (key == null || key.length == 0)

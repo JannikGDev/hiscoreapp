@@ -9,6 +9,7 @@ import HomeScreen from './screens/HomeScreen.js'
 import ProfileScreen from './screens/ProfileScreen.js'
 import RegisterScreen from './screens/RegisterScreen.js'
 import LoginScreen from './screens/LoginScreen.js';
+import DebugScreen from './screens/DebugScreen.js';
 import QuestListScreen from './screens/QuestListScreen.js'
 import { UserContext } from './shared/Contexts.js';
 import { IsLoggedIn } from './shared/GlobalStorage.js';
@@ -83,6 +84,11 @@ export default function App() {
                 headerTitleStyle: defaultStyles.navigationHeader.headerTitleStyle
               }}>
 
+
+                <Stack.Screen name="DebugScreen"component={DebugScreen} options={{title: ''}}/>
+
+                {/* 
+
                {// Load Mode
               (userState == null) && (<>
                 <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: ''}}/>
@@ -115,7 +121,7 @@ export default function App() {
               <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>
               </>)}
 
-
+                */}
 
             </Stack.Navigator>
           </NavigationContainer>

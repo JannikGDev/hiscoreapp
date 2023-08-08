@@ -131,9 +131,34 @@ const defaultStyles = StyleSheet.create({
         height: '100%',
     },
     loader: {
-        widt: '100%',
+        width: '100%',
         height: '100%',
-    }
+    },
+    panelContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        width: '90%',
+        margin: 12,
+        justifyContent: 'space-evenly'
+    },
+    panelRow: {
+        flex: 1,
+        flexDirection: 'row',
+        width: '100%',
+        height: 200,
+        justifyContent: 'space-evenly'
+    },
+    panel: {
+        flex: 0.3,
+        margin: 12,
+        backgroundColor: 'black',
+        borderWidth: 4,
+        borderRadius: 2,
+        borderColor: 'white'
+    },
+    panelImage: {
+        width: '100%',height: '100%', resizeMode: 'contain'
+    },
 
   });
   
