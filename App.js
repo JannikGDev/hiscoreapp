@@ -22,6 +22,7 @@ import Spacer from './shared/Spacer.js';
 import GameListScreen from './screens/GameListScreen.js';
 import HighscoreSubmitScreen from './screens/HighscoreSubmitScreen.js';
 import HighscoreListScreen from './screens/HighscoreListScreen.js';
+import { HighscoreScreen } from './screens/HighscoreScreen.js';
 import { Logs } from 'expo'
 
 Logs.enableExpoCliLogging()
@@ -64,7 +65,8 @@ export default function App() {
         QRCodeGenerator: 'qrgen',
         GameList: 'games',
         HighscoreSubmit: 'highscoreSubmit',
-        HighscoreList: 'highscorelist'
+        HighscoreList: 'highscorelist',
+        HighscoreScreen: 'highscorescreen'
       },
     };
   
@@ -85,10 +87,12 @@ export default function App() {
               }}>
 
 
-                <Stack.Screen name="DebugScreen"component={DebugScreen} options={{title: ''}}/>
+                {
+                //<Stack.Screen name="DebugScreen"component={DebugScreen} options={{title: ''}}/>
+                }
 
-                {/* 
-
+              
+            
                {// Load Mode
               (userState == null) && (<>
                 <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: ''}}/>
@@ -121,8 +125,10 @@ export default function App() {
               <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>
               </>)}
 
-                */}
 
+              { //Public Screens
+                 <Stack.Screen name="HighscoreScreen"component={HighscoreScreen} options={{title: ''}}/>
+              }
             </Stack.Navigator>
           </NavigationContainer>
         </UserContext.Provider>

@@ -8,9 +8,9 @@ import {Login, GetGames, GetImage} from '../shared/HiscoreAPI';
 import { NavButton } from '../shared/Controls';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PanelList } from '../shared/Components';
+import { GUID_EMPTY } from '../shared/Constants';
 
 
-const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
 
 const DebugScreen = ({navigation}) => {
 

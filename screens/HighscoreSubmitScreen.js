@@ -75,6 +75,12 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
     };
 
     const SendHighscore = async () => {
+        if(score == 0 || isNaN(score) || !Number.isInteger(score)) {
+            setShowMessage(true);
+            setMessage("Der eingegebene Score ist nicht gültig. Bitte gebe eine ganze positive Zahl ein.");
+            return;
+        }
+
         setLoading(true);
         let response =  await UploadHighscore(game.id, image, score);
         
@@ -115,10 +121,18 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         <SafeAreaView style = {{marginTop: 16,flexDirection: 'row', flex: 0.2}}>
             <TextInput
                 style={[styles.textInput, {width: '60%'}]}
-                onChangeText={setScore}
+                onChangeText={text =>   {
+                    let number = parseInt(text);
+                    if(!isNaN(number)) {
+                        setScore(number);
+                    }
+                    else if(text.length == 0) {
+                        setScore(0);
+                    }
+                }}
                 placeholder="Score"
-                value={score}
-                keyboardType='numeric'
+                value={score == 0 ? "" : score}
+                keyboardType='decimal'
                 textContentType='none'
             />
         </SafeAreaView>
