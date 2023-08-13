@@ -5,7 +5,7 @@ import Spacer from '../shared/Spacer'
 import { LogOut, IsLoggedIn } from '../shared/GlobalStorage.js';
 import { UserContext, GameContext } from '../shared/Contexts';
 import { GetUserData } from '../shared/HiscoreAPI';
-import { NavButton } from '../shared/Controls';
+import { HSButton, NavButton } from '../shared/Controls';
 
 
 const HomeScreen = ({navigation}) => {
@@ -30,29 +30,28 @@ const HomeScreen = ({navigation}) => {
 
         <Spacer bottom={24} />
 
-        {userMode && <NavButton text={"Profil"} navigation={navigation} navTarget={'Profile'}/>}
+        {userMode && <NavButton text={"Profil"} navigation={navigation} style={[styles.widthHalf]} navTarget={'Profile'}/>}
 
-        {userMode && <NavButton text={"QR Code Scannen"} navigation={navigation} navTarget={'QRScanner'}/>}
+        <NavButton text={"Quests"} navigation={navigation} navTarget={'QuestList'} style={[styles.widthHalf]}  numberIndicator={userState.openQuests == 0 ? null : userState.openQuests}/>
 
-        <NavButton text={"Quests"} navigation={navigation} navTarget={'QuestList'}/>
+        <Spacer bottom={64} />
 
-        <NavButton text={"Games"} navigation={navigation} navTarget={'GameList'}/>
+        {userMode && <NavButton text={"QR Code Scannen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRScanner'}/>}
 
-        {adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} navTarget={'QRCodeGenerator'}/>}
+        <NavButton text={"Game Highscores"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
+
+        {adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRCodeGenerator'}/>}
 
         <Spacer bottom={48} />
-        <View style = {styles.navButton}>
-            <Button
-            title="Logout"
-            color={styles.button.color}
-            onPress={async () =>{
-                await LogOut();
-                let newState = {...userState};
-                newState.loggedIn = await IsLoggedIn();
-                setUserState(newState);
-            }}
-            />
-        </View>
+        <HSButton text="Logout" 
+          style={[styles.widthHalf]} 
+          onPress={async () =>{
+              await LogOut();
+              let newState = {...userState};
+              newState.loggedIn = await IsLoggedIn();
+              setUserState(newState);
+          }}
+        />
       </View>
     );
   };

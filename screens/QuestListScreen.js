@@ -1,13 +1,30 @@
 import React, {useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, Pressable } from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import {GetQuests} from '../shared/HiscoreAPI.js'
 import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '../shared/Utility.js'
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { REPETITION_DAILY } from '../shared/Constants';
+
+const Tab = createMaterialTopTabNavigator();
 
 const QuestListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
     const [questItems, setQuestItems] = useState([]);
+    const [dailyQuestItems, setDailyQuestItems] = useState([]);
+    const [activeQuestItems, setActiveQuestItems] = useState([]);
+    const [doneQuestItems, setDoneQuestItems] = useState([]);
+
+/*
+    console.log("Daily");
+    console.log(dailyQuestItems);
+    console.log("Active");
+    console.log(aktiveQuestItems);
+    console.log("Done");
+    console.log(doneQuestItems);
+    */
 
     useEffect( () => {
         // declare the data fetching function
@@ -21,6 +38,29 @@ const QuestListScreen = ({navigation, route}) => {
             let questList = result.response;
             console.log(questList);
             setQuestItems(questList);
+            
+            let activeQuests = [];
+            let dailyQuests = [];
+            let doneQuests = [];
+
+            questList.forEach(quest => {
+                if(!quest.requirementsFulfilled || quest.Hidden) {
+
+                }
+                else if(quest.done) {
+                    doneQuests.push(quest);
+                }
+                else if(quest.repetition == REPETITION_DAILY) {
+                    dailyQuests.push(quest);
+                }
+                else {
+                    activeQuests.push(quest);
+                }
+            });
+
+            setDailyQuestItems(dailyQuests);
+            setActiveQuestItems(activeQuests);
+            setDoneQuestItems(doneQuests);
             setInitiated(true);
         }
 
@@ -31,8 +71,25 @@ const QuestListScreen = ({navigation, route}) => {
     if(initiated === false) {
         return (<View style={styles.pageContainer}></View>)
     }
-    else{
-    return (
+    else{    
+        
+        return (
+            <NavigationContainer independent={true} style={{height: '100%', width: '100%'}}>
+            <Tab.Navigator
+              screenOptions={{
+                tabBarLabelStyle: { fontSize: 28, fontWeight: 'bold', color: '#F9FDFC' },
+                tabBarItemStyle: { },
+                tabBarStyle: { backgroundColor: '#3D3F56' },
+              }}>
+              <Tab.Screen name={"Tägliche Quests ("+dailyQuestItems.length+")"} component={QuestList} initialParams={{ questItems: dailyQuestItems, navigation: navigation }}/>
+              <Tab.Screen name={"Aktive Quests ("+activeQuestItems.length+")"} component={QuestList} initialParams={{ questItems: activeQuestItems, navigation: navigation }}/>
+              <Tab.Screen name="Abgeschlossene Quests" component={QuestList} initialParams={{ questItems: doneQuestItems, navigation: navigation  }}/>
+            </Tab.Navigator>
+          </NavigationContainer>
+        )
+
+        {/*
+        return (
         <View style={[styles.listContainer,{paddingTop: 32}]}>
         <SafeAreaView style={[styles.listContainer]}>
         <Text style={styles.pageTitle}>Quests</Text>
@@ -44,10 +101,33 @@ const QuestListScreen = ({navigation, route}) => {
         </SafeAreaView>
         </View>
         )
+        */}
     }
 };
 
-export const QuestListItem = ({entry}) => 
+
+const QuestList = ({route}) => {
+
+    let questItems = route.params.questItems;
+    let navigation = route.params.navigation;
+
+    return (
+        <View style={[styles.listContainer,{paddingTop: 32}]}>
+        <SafeAreaView style={[styles.listContainer]}>
+
+            <FlatList
+                data={questItems}
+                renderItem={(entry) => <QuestListItem entry={entry} navigation={navigation}/>}
+                keyExtractor={entry => entry.id}
+            />
+        </SafeAreaView>
+        </View>
+    )
+
+};
+
+
+export const QuestListItem = ({entry, navigation}) => 
 {
 
     let quest = entry.item;
@@ -56,10 +136,12 @@ export const QuestListItem = ({entry}) =>
         <View style={[styles.listItem, {flexDirection: 'column'}, quest.done ? styles.questItemDone : styles.questItemOpen]}>
             
 
-            <View style={{flexDirection: 'row', flex: 2}}>
+            <Pressable style={{flexDirection: 'row', flex: 2}}
+            onPress={() =>navigation.navigate("QuestDetail", {quest: quest})}
+            >
                 <Image
                 style={[styles.inlineIcon,{ width: 32, height: 'auto', flex: 0.5, marginRight: 16}]} 
-                source={quest.done ? require('../assets/quest-completed.png') : require('../assets/quest-open.png')}
+                source={quest.done ? require('../assets/green-checkmark.webp') : require('../assets/exclamation-icon.png')}
                 />
                 <View style={{flexDirection: 'column', flex: 2}}>
                     <Text style={[styles.text, styles.textBold, {flex: 1}]}>{quest.name}</Text>
@@ -67,7 +149,7 @@ export const QuestListItem = ({entry}) =>
                     <Text style={[styles.text, {flex: 1}]}>{GetQuestRewardExp(quest)}{GetQuestRewardMultiplier(quest)}</Text>
                     <Text style={[styles.text, {flex: 0.5}]}> {quest.done ? "Erledigt!" : "Offen"} </Text>
                 </View>
-             </View>
+            </Pressable>
         </View>
       );
 }

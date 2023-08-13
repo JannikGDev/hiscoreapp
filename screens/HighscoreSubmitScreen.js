@@ -17,7 +17,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
     const [message, setMessage] = useState("");
     const [score, setScore] = useState(0);
     const [loading, setLoading] = useState(false);
-    const {game} = route.params;
+    const {game, categoryId} = route.params;
 
     let camera;
     const pickImage = async () => {
@@ -82,7 +82,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         }
 
         setLoading(true);
-        let response =  await UploadHighscore(game.id, image, score);
+        let response =  await UploadHighscore(game.id, categoryId, image, score);
         
         if(response.success) {
         setShowMessage(true);
@@ -118,9 +118,9 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
             Trage hier deinen erreichen Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
         </Text>
 
-        <SafeAreaView style = {{marginTop: 16,flexDirection: 'row', flex: 0.2}}>
+        <SafeAreaView style = {{marginTop: 16,flexDirection: 'row'}}>
             <TextInput
-                style={[styles.textInput, {width: '60%'}]}
+                style={[styles.textInput, {width: '100%'}]}
                 onChangeText={text =>   {
                     let number = parseInt(text);
                     if(!isNaN(number)) {

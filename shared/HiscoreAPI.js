@@ -158,14 +158,14 @@ export const GetImage = async (imageId) => {
   return result;
 }
 
-export const UploadHighscore = async (gameId, imageUri, score) => {
-  const request_url = API_BASE_URL + '/Highscore?gameId=' + gameId + '&score=' + score;
+export const UploadHighscore = async (gameId, categoryId, imageUri, score) => {
+  const request_url = API_BASE_URL + '/Highscore/SaveHighscore?gameId=' + gameId + '&categoryid=' + categoryId + '&score=' + score;
 
   //console.log({ id: gameId, score: score, uri: imageUri });
 
   let key = await GetJWTKey();
   if (key == null || key.length == 0)
-    return { success: false, message: "Nicht eingelogt!" };
+    return { success: false, message: "Nicht eingeloggt!" };
 
   let headers = {
     'Authorization': 'Bearer ' + key,
@@ -198,8 +198,18 @@ export const GetGames = async () => {
   return result;
 };
 
-export const GetHighscores = async (gameId) => {
-  const request_url = API_BASE_URL + '/Highscore?gameid=' + gameId;
+export const GetHighscores = async (gameId, categoryId, userId) => {
+  let request_url = API_BASE_URL + '/Highscore/GetHighscores?gameid=' + gameId + '&categoryid=' + categoryId;
+  if(userId != null) {
+    request_url += '&userid=' + userId;
+  }
+
+  var result = await SendRequest(request_url, 'GET', {}, null);
+  return result;
+};
+
+export const GetHighscoresTopTen = async (gameId, categoryId) => {
+  const request_url = API_BASE_URL + '/Highscore/GetHighscoresTopTen?gameid=' + gameId + '&categoryid=' + categoryId;
 
   var result = await SendRequest(request_url, 'GET', {}, null);
   return result;

@@ -15,7 +15,7 @@ import { UserContext } from './shared/Contexts.js';
 import { IsLoggedIn } from './shared/GlobalStorage.js';
 import SplashScreen from './screens/SplashScreen.js';
 import PasswordResetScreen from './screens/PasswordResetScreen.js';
-import {GetUserData} from './shared/HiscoreAPI.js'
+import {GetQuests, GetUserData} from './shared/HiscoreAPI.js'
 import { QRScannerScreen } from './screens/QRScannerScreen.js';
 import QRCodeGeneratorScreen from './screens/QRCodeGenerator.js';
 import Spacer from './shared/Spacer.js';
@@ -24,6 +24,8 @@ import HighscoreSubmitScreen from './screens/HighscoreSubmitScreen.js';
 import HighscoreListScreen from './screens/HighscoreListScreen.js';
 import { HighscoreScreen } from './screens/HighscoreScreen.js';
 import { Logs } from 'expo'
+import QuestDetailScreen from './screens/QuestDetailScreen.js';
+import { REPETITION_DAILY } from './shared/Constants.js';
 
 Logs.enableExpoCliLogging()
 const Stack = createNativeStackNavigator();
@@ -48,6 +50,20 @@ export default function App() {
           let newUserState = {...userState};
           newUserState.loggedIn = loggedIn;
           newUserState.isAdmin = isAdmin;
+
+          if(!isAdmin) {
+            let questResult = await GetQuests();
+            if(questResult.success) {
+              let quests = questResult.response;
+              newUserState.openQuests = quests.filter((quest) => !quest.done && quest.repetition == REPETITION_DAILY && quest.requirementsFulfilled && !quest.hidden).length;
+            } 
+            else
+              newUserState.openQuests = 0;
+          }
+          else {
+            newUserState.openQuests = 0;
+          }
+
           setUserState(newUserState);
          }
          checkLogin();
@@ -59,6 +75,7 @@ export default function App() {
         Profile: 'usr',
         QRScanner: 'scan',
         QuestList: 'quests',
+        QuestDetail: 'questdetail',
         Login: 'login',
         Register: 'register',
         PasswordReset: 'pwreset',
@@ -66,7 +83,7 @@ export default function App() {
         GameList: 'games',
         HighscoreSubmit: 'highscoreSubmit',
         HighscoreList: 'highscorelist',
-        HighscoreScreen: 'highscorescreen'
+        Highscore: 'highscore'
       },
     };
   
@@ -107,10 +124,11 @@ export default function App() {
 
               {// UserMode Mode
               (userState != null && userState.loggedIn && !userState.isAdmin) && (<>
-                <Stack.Screen name="Home"component={HomeScreen} options={{title: ''}}/>
+                <Stack.Screen name="Home" component={HomeScreen} options={{title: ''}}/>
                 <Stack.Screen name="Profile" component={ProfileScreen} options={{title: ''}}/>
                 <Stack.Screen name="QRScanner" component={QRScannerScreen} options={{title: ''}}/>
                 <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: ''}}/>
+                <Stack.Screen name="QuestDetail" component={QuestDetailScreen} options={{title: ''}}/>
                 <Stack.Screen name="GameList" component={GameListScreen} options={{title: ''}}/>
                 <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>
                 <Stack.Screen name="HighscoreSubmit" component={HighscoreSubmitScreen} options={{title: ''}}/> 
@@ -118,8 +136,9 @@ export default function App() {
 
               {// Admin Mode
               (userState != null && userState.loggedIn && userState.isAdmin) && (<>
-              <Stack.Screen name="Home"component={HomeScreen} options={{title: ''}}/>
+              <Stack.Screen name="Home" component={HomeScreen} options={{title: ''}}/>
               <Stack.Screen name="QuestList" component={QuestListScreen} options={{title: ''}}/>
+              <Stack.Screen name="QuestDetail" component={QuestDetailScreen} options={{title: ''}}/>
               <Stack.Screen name="GameList" component={GameListScreen} options={{title: ''}}/>
               <Stack.Screen name="QRCodeGenerator" component={QRCodeGeneratorScreen}  options={{title: ''}}/>
               <Stack.Screen name="HighscoreList" component={HighscoreListScreen} options={{title: ''}}/>

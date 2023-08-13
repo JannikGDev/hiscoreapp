@@ -73,10 +73,35 @@ const defaultStyles = StyleSheet.create({
     buttonClose: {
         backgroundColor: '#3D3F56',
     },
+    buttonIndicator: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        right: -15,
+        top: -15,
+        width: 50,
+        height: 50,
+        flex: 1,
+    },
+    buttonIndicatorText: {
+        color: '#FD65AF',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        right: -0.5,
+        top: -1,
+    },
     navButton: {
-        width: '59%',
         margin: 6,
     },
+    hsButton: {
+        color: '#F9FDFC',
+        backgroundColor: '#3D3F56',
+        minHeight: '50px',
+        margin: 6,
+    },
+    widthHalf: {
+        width: '50%'
+    },  
     textInput: {
         height: 40,
         marginBottom: 12,
@@ -157,7 +182,9 @@ const defaultStyles = StyleSheet.create({
         borderColor: 'white'
     },
     panelImage: {
-        width: '100%',height: '100%', resizeMode: 'contain'
+        width: '100%',
+        height: '100%', 
+        resizeMode: 'contain'
     },
 
   });

@@ -20,23 +20,20 @@ export const PanelList = ({panelItems}) => {
             <View style={styles.panelRow}>
                 {panelItems.length > rowNum*3 &&
                 <Pressable style={styles.panel} onPress={panelItems[rowNum*3].onPress}>
-                    <Image source={panelItems[rowNum*3].imageSrc} style={styles.panelImage}>
-    
-                    </Image>
+                    <Image source={panelItems[rowNum*3].imageSrc} style={styles.panelImage}></Image>
+                    <Text style={styles.text}>{panelItems[rowNum*3].title}</Text>
                 </Pressable>
                 }
                 {panelItems.length > rowNum*3 + 1 &&
                 <Pressable style={styles.panel} onPress={panelItems[rowNum*3+1].onPress}>
-                    <Image source={panelItems[rowNum*3+1].imageSrc} style={styles.panelImage}>
-    
-                    </Image>
+                    <Image source={panelItems[rowNum*3+1].imageSrc} style={styles.panelImage}></Image>
+                    <Text style={styles.text}>{panelItems[rowNum*3+1].title}</Text>
                 </Pressable>
                 }
                 {panelItems.length > rowNum*3 + 2 &&
                 <Pressable style={styles.panel} onPress={panelItems[rowNum*3+2].onPress}>
-                    <Image source={panelItems[rowNum*3+2].imageSrc}  style={styles.panelImage}>
-    
-                    </Image>
+                    <Image source={panelItems[rowNum*3+2].imageSrc}  style={styles.panelImage}></Image>
+                    <Text style={styles.text}>{panelItems[rowNum*3+2].title}</Text>
                 </Pressable>
                 }
                 
