@@ -1,15 +1,20 @@
 import React, {useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, Pressable, ActivityIndicator } from 'react-native';
+import {useWindowDimensions} from 'react-native';
 import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import {GetGames, GetImage} from '../shared/HiscoreAPI.js'
 import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '../shared/Utility.js'
 import { PanelList } from '../shared/Components';
 import { GUID_EMPTY } from '../shared/Constants';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const GameListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
     const [gameItems, setGameItems] = useState([]);
+
+    const {screenHeight, screenWidth, scale, fontScale} = useWindowDimensions();
+
 
 
     useEffect( () => {
@@ -48,16 +53,22 @@ const GameListScreen = ({navigation, route}) => {
     }});
 
     if(initiated === false) {
-        return (<View style={styles.pageContainer}><ActivityIndicator style={styles.loader}/></View>)
+        return (<View style={styles.pageContainer}>
+                    <Text style={styles.pageTitle}>Game Highscores</Text>
+                <ActivityIndicator style={styles.loader}/>
+            </View>)
     }
     else{
     return (
 
-        <View style={[styles.listContainer,{paddingTop: 32}]}>
+    <ScrollView style={[styles.listContainer,{paddingTop: 32, height: screenHeight}]}>
+
+        <Text style={styles.pageTitle}>Game Highscores</Text>
+
         <PanelList panelItems={panelItems}>
 
         </PanelList>
-        </View> 
+    </ScrollView> 
     )}
 };
 

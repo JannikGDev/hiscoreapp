@@ -77,7 +77,7 @@ const QuestListScreen = ({navigation, route}) => {
             <NavigationContainer independent={true} style={{height: '100%', width: '100%'}}>
             <Tab.Navigator
               screenOptions={{
-                tabBarLabelStyle: { fontSize: 28, fontWeight: 'bold', color: '#F9FDFC' },
+                tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold', color: '#F9FDFC' },
                 tabBarItemStyle: { },
                 tabBarStyle: { backgroundColor: '#3D3F56' },
               }}>
@@ -87,21 +87,6 @@ const QuestListScreen = ({navigation, route}) => {
             </Tab.Navigator>
           </NavigationContainer>
         )
-
-        {/*
-        return (
-        <View style={[styles.listContainer,{paddingTop: 32}]}>
-        <SafeAreaView style={[styles.listContainer]}>
-        <Text style={styles.pageTitle}>Quests</Text>
-            <FlatList
-                data={questItems}
-                renderItem={(entry) => <QuestListItem entry={entry} />}
-                keyExtractor={quest => quest.id}
-            />
-        </SafeAreaView>
-        </View>
-        )
-        */}
     }
 };
 

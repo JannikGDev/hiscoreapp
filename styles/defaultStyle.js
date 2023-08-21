@@ -23,7 +23,7 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: '#040205',
         flex: 1,
         alignItems: 'center',
-        paddingTop: 32,
+        height: '100%'
     },
     pageTitle: {
         color: '#F9FDFC',
@@ -33,11 +33,6 @@ const defaultStyles = StyleSheet.create({
     },
     inlineIcon: {
         resizeMode: 'contain',
-    },
-    logo: {
-        resizeMode: 'contain',
-        width: '100%',
-        
     },
     text: {
         color: '#F9FDFC',
@@ -96,8 +91,9 @@ const defaultStyles = StyleSheet.create({
     hsButton: {
         color: '#F9FDFC',
         backgroundColor: '#3D3F56',
-        minHeight: '50px',
         margin: 6,
+        minWidth: 250,
+        padding: 3
     },
     widthHalf: {
         width: '50%'
@@ -167,10 +163,9 @@ const defaultStyles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     panelRow: {
-        flex: 1,
         flexDirection: 'row',
         width: '100%',
-        height: 200,
+        aspectRatio: 3,
         justifyContent: 'space-evenly'
     },
     panel: {
@@ -179,12 +174,19 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: 'black',
         borderWidth: 4,
         borderRadius: 2,
+        aspectRatio: 1,
         borderColor: 'white'
+    },
+    panelText: {
+        marginTop: 3,
     },
     panelImage: {
         width: '100%',
         height: '100%', 
         resizeMode: 'contain'
+    },
+    headerLogo: {
+        width: '100%',
     },
 
   });

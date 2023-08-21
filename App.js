@@ -100,16 +100,13 @@ export default function App() {
             <Stack.Navigator screenOptions={{
                 headerStyle: defaultStyles.navigationHeader.headerStyle,
                 headerTintColor: defaultStyles.navigationHeader.headerTintColor,
-                headerTitleStyle: defaultStyles.navigationHeader.headerTitleStyle
+                headerTitleStyle: defaultStyles.navigationHeader.headerTitleStyle,
+                headerShown: false,
+                contentStyle:{
+                  backgroundColor:'#040205'
+                }
               }}>
 
-
-                {
-                //<Stack.Screen name="DebugScreen"component={DebugScreen} options={{title: ''}}/>
-                }
-
-              
-            
                {// Load Mode
               (userState == null) && (<>
                 <Stack.Screen name="Splashscreen"component={SplashScreen} options={{title: ''}}/>

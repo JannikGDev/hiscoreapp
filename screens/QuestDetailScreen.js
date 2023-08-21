@@ -22,27 +22,39 @@ const QuestDetailScreen = ({route, navigation}) => {
         <View style={styles.pageContainer}>
             <Text style={styles.pageTitle}>Quest: {quest.name}</Text>
             <Text style={styles.text}>Status: {quest.requirementsFulfilled ? (quest.done ? "Erledigt!" : "Offen") : "Nicht freigeschaltet"}</Text>
-            <Text style={[styles.text]}>{GetRepetitionString(quest.repetition)}</Text>
+            <Text style={[styles.text]}>Wiederholung: {GetRepetitionString(quest.repetition)}</Text>
 
             <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.pageTitle, styles.textBig]}>Aufgaben</Text>
+                <Text style={[styles.text, styles.textBig]}>Aufgaben</Text>
                 
+                {quest.tasks.length == 0 &&
+                    <Text style={styles.text}>-</Text>
+                }
+
                 {quest.tasks.map((task) => 
                         <Text style={styles.text}> - {task.description}</Text>
                 )}
             </View>
             
             <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.pageTitle, styles.textBig]}>Belohnungwn</Text>
+                <Text style={[styles.text, styles.textBig]}>Belohnungen</Text>
                 
+                {quest.rewards.length == 0 &&
+                    <Text style={styles.text}>-</Text>
+                }
+
                 {quest.rewards.map((reward) => 
                         <Text style={styles.text}> - {reward.description}</Text>
                 )}
             </View>
 
             <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.pageTitle, styles.textBig]}>Vorraussetzungen</Text>
-                
+                <Text style={[styles.text, styles.textBig]}>Vorraussetzungen</Text>
+
+                {quest.requirements.length == 0 &&
+                    <Text style={styles.text}>-</Text>
+                }
+
                 {quest.requirements.map((req) => 
                         <Text style={styles.text}> - {req.description}</Text>
                 )}

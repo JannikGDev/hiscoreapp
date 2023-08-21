@@ -89,11 +89,20 @@ const HighscoreListScreen = ({navigation, route}) => {
         
         
         {initiated && <>
+
+            {categories.length == 0 && 
+            <Text style={styles.text}> Keine Kategorie registriert</Text>
+            }
+
             {categories.map((category) => 
 
             <View style={{width: '100%', paddingHorizontal: '10%'}}>
                 <Text style={styles.pageTitle}>Kategorie: {category.categoryName}</Text>
-                <NavButton text={"Neuen Highscore eintragen"} navigation={navigation} navTarget={'HighscoreSubmit'} style={{width: '30%', marginLeft: 16, }} params={{...route.params, categoryId: category.id}} />
+                <NavButton text={"Neuer Highscore"} 
+                            navigation={navigation} 
+                            navTarget={'HighscoreSubmit'} 
+                            style={styles.hsButton} 
+                            params={{...route.params, categoryId: category.id}} />
                 { category.userHighscore && 
                     <View>
                         <Text style={styles.pageTitle}>Dein Highscore</Text>
@@ -113,27 +122,6 @@ const HighscoreListScreen = ({navigation, route}) => {
             </View>
             
             )}
-
-
-
-            {/*false && <>
-            <Spacer top={32} />
-            <Text style={styles.pageTitle}>Dein Highscore</Text>
-            <SafeAreaView style={[{ width: '100%'}]}>
-                <HighscoreItem highscore={null} />
-            </SafeAreaView>
-            </>}
-            <Spacer top={32} />
-            <Text style={styles.pageTitle}>Top 10</Text>
-            <SafeAreaView style={[styles.listContainer,{width: '100%', margin: 16}]}>
-                <FlatList
-                    data={highscores}
-                    renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
-                    keyExtractor={highscore => highscore.id}
-                />
-            </SafeAreaView>*/}
-            
-        
         </>}
     </View>);
 };
