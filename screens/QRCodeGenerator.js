@@ -25,7 +25,8 @@ const QRCodeGeneratorScreen = ({navigation, route}) => {
             }
                 
             let questList = result.response;
-            setQuestItems(questList);
+            let questsWithOneTask = questList.filter((q) => q.tasks.filter((t) => t.taskType == "QRCode").length == 1);
+            setQuestItems(questsWithOneTask);
             setInitiated(true);
         }
 
@@ -75,11 +76,12 @@ const QRCodeGeneratorScreen = ({navigation, route}) => {
 export const QuestListItem = ({entry, setImage}) => 
 {
     let quest = entry.item;
+    let task = quest.tasks.find((t) => t.taskType == 'QRCode');
 
     return  (
     <Pressable onPress={async () => {
         
-        let result = await GenerateQRCode(quest.id);
+        let result = await GenerateQRCode(task.id);
         setImage(result.image);
 
       }}>

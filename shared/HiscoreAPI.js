@@ -215,8 +215,8 @@ export const GetHighscoresTopTen = async (gameId, categoryId) => {
   return result;
 };
 
-export const GenerateQRCode = async (questId) => {
-  const request_url = API_BASE_URL + '/Quest/qrcode?id=' + questId;
+export const GenerateQRCode = async (taskId) => {
+  const request_url = API_BASE_URL + '/Quest/qrcode?id=' + taskId;
 
   let key = await GetJWTKey();
   if (key == null || key.length == 0)
