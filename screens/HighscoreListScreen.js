@@ -98,7 +98,7 @@ const HighscoreListScreen = ({navigation, route}) => {
 
             <View style={{width: '100%', paddingHorizontal: '10%'}}>
                 <Text style={styles.pageTitle}>Kategorie: {category.categoryName}</Text>
-                <NavButton text={"Neuer Highscore"} 
+                <NavButton text={"Highscore einreichen"} 
                             navigation={navigation} 
                             navTarget={'HighscoreSubmit'} 
                             style={styles.hsButton} 

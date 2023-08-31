@@ -46,9 +46,9 @@ const HomeScreen = ({navigation}) => {
 
             {userMode && <NavButton text={"QR Code Scannen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRScanner'}/>}
 
-            <NavButton text={"Game Highscores"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
+            <NavButton text={"Highscore Tabellen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
 
-            {adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRCodeGenerator'}/>}
+            {/*adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRCodeGenerator'}/>*/}
 
             <Spacer bottom={48} />
             <HSButton text="Logout" 

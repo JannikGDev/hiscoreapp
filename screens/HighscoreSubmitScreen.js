@@ -115,7 +115,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
         </Text>
 
         <Text style={styles.text}>
-            Trage hier deinen erreichen Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
+            Trage hier deinen erreichten Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
         </Text>
 
         <SafeAreaView style = {{marginTop: 16,flexDirection: 'row'}}>
@@ -145,7 +145,7 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
             <SafeAreaView>
                 <Button
                 style={[{width: '60%'}]}
-                title="Foto aus Gallerie wählen"
+                title="Foto aus Galerie wählen"
                 color={styles.button.color}
                 onPress={pickImage}
                 />
