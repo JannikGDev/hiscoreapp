@@ -7,6 +7,7 @@ import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { REPETITION_DAILY } from '../shared/Constants';
+import { NavButton } from '../shared/Controls';
 
 
 
@@ -24,41 +25,45 @@ const QuestDetailScreen = ({route, navigation}) => {
             <Text style={styles.text}>Status: {quest.requirementsFulfilled ? (quest.done ? "Erledigt!" : "Offen") : "Nicht freigeschaltet"}</Text>
             <Text style={[styles.text]}>Wiederholung: {GetRepetitionString(quest.repetition)}</Text>
 
-            <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.text, styles.textBig]}>Aufgaben</Text>
+            {quest.tasks.length > 0 &&
+                <View style={{flexDirection: 'column', width: '100%', marginTop: '2vh', marginBottom: '2vh'}}>
+                    <Text style={[styles.text, styles.textBig]}>Aufgaben</Text>
+                    
                 
-                {quest.tasks.length == 0 &&
-                    <Text style={styles.text}>-</Text>
-                }
 
-                {quest.tasks.map((task) => 
-                        <Text style={styles.text}>{task.description}</Text>
-                )}
-            </View>
-            
-            <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.text, styles.textBig]}>Belohnungen</Text>
+                    {quest.tasks.map((task) => 
+                            <Text style={styles.text}>{task.description}</Text>
+                    )}
+                </View>
+            }
+
+            {quest.rewards.length > 0 &&
+                <View style={{flexDirection: 'column', width: '100%', marginTop: '2vh', marginBottom: '2vh'}}>
+                    <Text style={[styles.text, styles.textBig]}>Belohnungen</Text>
                 
-                {quest.rewards.length == 0 &&
-                    <Text style={styles.text}></Text>
-                }
+                    {quest.rewards.map((reward) => 
+                            <Text style={styles.text}>{reward.description}</Text>
+                    )}
+                </View>
+            }
 
-                {quest.rewards.map((reward) => 
-                        <Text style={styles.text}>{reward.description}</Text>
-                )}
-            </View>
+            {quest.requirements.length > 0 &&
+                <View style={{flexDirection: 'column', width: '100%', marginTop: '2vh', marginBottom: '2vh'}}>
+                    <Text style={[styles.text, styles.textBig]}>Vorraussetzungen</Text>
+                    {quest.requirements.map((req) => 
+                            <Text style={styles.text}>{req.description}</Text>
+                    )}
+                </View>
+            }
 
-            <View style={{flexDirection: 'column', width: '100%'}}>
-                <Text style={[styles.text, styles.textBig]}>Vorraussetzungen</Text>
+            {quest.tasks.some((t) => t.taskType == "QRCode") &&
+                <NavButton text={"QR Code Scannen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRScanner'}/>
+            }
 
-                {quest.requirements.length == 0 &&
-                    <Text style={styles.text}></Text>
-                }
-
-                {quest.requirements.map((req) => 
-                        <Text style={styles.text}>{req.description}</Text>
-                )}
-            </View>
+            {quest.tasks.some((t) => t.taskType == "Highscore") &&
+                <NavButton text={"Highscore hochladen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
+            }
+           
         </View>
     )
 
