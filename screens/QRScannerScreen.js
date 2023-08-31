@@ -57,7 +57,7 @@ export const QRScannerScreen = ({navigation, route}) => {
       return;
     }
 
-    setMessage(`Du hast die Quest ${result.response.name} absolviert! Du hast ${result.response.experience} EXP bekommen!`);
+    setMessage(`Du hast die Quest ${result.response.name} absolviert! Du hast ${result.response.exp} EXP bekommen!`);
     setShowMessage(true);
     setLoading(false);
   };
