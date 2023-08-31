@@ -32,7 +32,7 @@ const QuestDetailScreen = ({route, navigation}) => {
                 }
 
                 {quest.tasks.map((task) => 
-                        <Text style={styles.text}> - {task.description}</Text>
+                        <Text style={styles.text}>{task.description}</Text>
                 )}
             </View>
             
@@ -40,11 +40,11 @@ const QuestDetailScreen = ({route, navigation}) => {
                 <Text style={[styles.text, styles.textBig]}>Belohnungen</Text>
                 
                 {quest.rewards.length == 0 &&
-                    <Text style={styles.text}>-</Text>
+                    <Text style={styles.text}></Text>
                 }
 
                 {quest.rewards.map((reward) => 
-                        <Text style={styles.text}> - {reward.description}</Text>
+                        <Text style={styles.text}>{reward.description}</Text>
                 )}
             </View>
 
@@ -52,11 +52,11 @@ const QuestDetailScreen = ({route, navigation}) => {
                 <Text style={[styles.text, styles.textBig]}>Vorraussetzungen</Text>
 
                 {quest.requirements.length == 0 &&
-                    <Text style={styles.text}>-</Text>
+                    <Text style={styles.text}></Text>
                 }
 
                 {quest.requirements.map((req) => 
-                        <Text style={styles.text}> - {req.description}</Text>
+                        <Text style={styles.text}>{req.description}</Text>
                 )}
             </View>
         </View>
