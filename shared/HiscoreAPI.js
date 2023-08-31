@@ -37,7 +37,7 @@ const SendRequest = async (url, method, headers, body, onSuccessMessage = "Actio
   }
 
   if (!response.ok) {
-    let error = await response.json();
+    let error = await response.text();
     //console.log("Request Error response: ");
     //console.log(error);
     return { message: error, success: false, statusCode: statusCode };
