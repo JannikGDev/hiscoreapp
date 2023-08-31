@@ -12,7 +12,7 @@ import LoginScreen from './screens/LoginScreen.js';
 import DebugScreen from './screens/DebugScreen.js';
 import QuestListScreen from './screens/QuestListScreen.js'
 import { UserContext } from './shared/Contexts.js';
-import { IsLoggedIn } from './shared/GlobalStorage.js';
+import { IsLoggedIn, LogOut} from './shared/GlobalStorage.js';
 import SplashScreen from './screens/SplashScreen.js';
 import PasswordResetScreen from './screens/PasswordResetScreen.js';
 import {GetQuests, GetUserData} from './shared/HiscoreAPI.js'
@@ -43,8 +43,16 @@ export default function App() {
 
           if(loggedIn) {
             let result = await GetUserData();
-            loggedIn = loggedIn && result.success;
-            isAdmin = result.response.isAdmin;
+            if(result.success) {
+              loggedIn = true;
+              isAdmin = result.response.isAdmin;
+              
+            }
+            else {
+              LogOut();
+              checkLogin();
+              return;
+            }
           }
          
           let newUserState = {...userState};
