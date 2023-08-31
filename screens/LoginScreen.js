@@ -31,7 +31,7 @@ const LoginScreen = ({navigation, route}) => {
         <Spacer bottom={24} />
         <SafeAreaView style = {{width: '80%'}}>
         <Text style={styles.text}>
-            Gebe deinen Benutzernamen und Passwort ein um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
+            Gib deinen Benutzernamen und Passwort ein um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
             </Text>
 
         <Spacer bottom={12} />
