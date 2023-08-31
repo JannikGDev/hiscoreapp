@@ -13,7 +13,6 @@ const Tab = createMaterialTopTabNavigator();
 const QuestListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
     const [questItems, setQuestItems] = useState([]);
-    const [dailyQuestItems, setDailyQuestItems] = useState([]);
     const [activeQuestItems, setActiveQuestItems] = useState([]);
     const [doneQuestItems, setDoneQuestItems] = useState([]);
 
@@ -40,7 +39,6 @@ const QuestListScreen = ({navigation, route}) => {
             setQuestItems(questList);
             
             let activeQuests = [];
-            let dailyQuests = [];
             let doneQuests = [];
 
             questList.forEach(quest => {
@@ -50,15 +48,11 @@ const QuestListScreen = ({navigation, route}) => {
                 else if(quest.done) {
                     doneQuests.push(quest);
                 }
-                else if(quest.repetition == REPETITION_DAILY) {
-                    dailyQuests.push(quest);
-                }
                 else {
                     activeQuests.push(quest);
                 }
             });
 
-            setDailyQuestItems(dailyQuests);
             setActiveQuestItems(activeQuests);
             setDoneQuestItems(doneQuests);
             setInitiated(true);
@@ -81,8 +75,7 @@ const QuestListScreen = ({navigation, route}) => {
                 tabBarItemStyle: { },
                 tabBarStyle: { backgroundColor: '#3D3F56' },
               }}>
-              <Tab.Screen name={"Tägliche Quests ("+dailyQuestItems.length+")"} component={QuestList} initialParams={{ questItems: dailyQuestItems, navigation: navigation }}/>
-              <Tab.Screen name={"Aktive Quests ("+activeQuestItems.length+")"} component={QuestList} initialParams={{ questItems: activeQuestItems, navigation: navigation }}/>
+              <Tab.Screen name={"Offene Quests ("+activeQuestItems.length+")"} component={QuestList} initialParams={{ questItems: activeQuestItems, navigation: navigation }}/>
               <Tab.Screen name="Abgeschlossene Quests" component={QuestList} initialParams={{ questItems: doneQuestItems, navigation: navigation  }}/>
             </Tab.Navigator>
           </NavigationContainer>
