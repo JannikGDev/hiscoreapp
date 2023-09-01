@@ -76,6 +76,7 @@ const ProfileScreen = ({navigation, route}) => {
                 style={{width: '50%', flex: 0.5}} 
                 resizeMode='contain'
             ></Image>
+
             {editMode ? ( <View style={[styles.container,{flexDirection: 'row', flex: 0.1, justifyContent: 'center'}]}>
                 <Pressable style={{height: '100%', flex: 0.3}}
                     onPress={async () => {
@@ -94,12 +95,23 @@ const ProfileScreen = ({navigation, route}) => {
         
             <Spacer bottom={32}/> 
 
-            <Text style={[styles.text, styles.textBig]}>
-                {userName}
-            </Text>
-            <Text style={[styles.textDark, styles.textBigger]}>
+            <Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+            
+            <Text style={[styles.text, styles.textBig, styles.headerText]}>
                 Level {level}
             </Text>
+
+            <Text style={[styles.textLight, styles.textBigger]}>
+                {userName}
+            </Text>            
+
+            <Image 
+            source={require('../assets/header-bg-2.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>            
 
             <Spacer bottom={24} />
             <View style={[styles.container, {width: '60%'}]}>
@@ -117,13 +129,16 @@ const ExpView = ({exp, expNextLevel, multiplier, dayExp, preDayExp}) => {
         <View style={[styles.container, {flexDirection: 'column', alignItems: 'flex-start'}]}>
 
             <Text style={styles.text}>EXP (gestern): {(exp - (dayExp*multiplier)).toFixed(0)}</Text>
+            <Spacer bottom={10}/>             
             <Text style={styles.text}>EXP (heute): {dayExp} x {multiplier.toFixed(1)} = {(multiplier*dayExp).toFixed(0)}</Text>
+            <Spacer bottom={10}/>             
             <Text style={styles.text}>EXP gesamt: {(multiplier*dayExp).toFixed(0)} + {(exp - multiplier*dayExp).toFixed(0)} = {exp.toFixed(0)}</Text>
-
+            <Spacer bottom={10}/>             
             <Text style={styles.text}>Heute gesammelte EXP: {dayExp.toFixed(0)}</Text>
-            <Text style={styles.text}>Multiplikator: x{multiplier.toFixed(1)}</Text>
-
-            <Text style={styles.text}>Nächstes Level ab: {expNextLevel.toFixed(0)}</Text>
+            <Spacer bottom={10}/>             
+            <Text style={styles.text}>Aktiver Multiplikator: x{multiplier.toFixed(1)}</Text>
+            <Spacer bottom={10}/>             
+            <Text style={styles.text}>Noch {expNextLevel.toFixed(0)} EXP zum nächsten Level</Text>
         </View>
     )
 };

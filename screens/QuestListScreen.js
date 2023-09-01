@@ -73,7 +73,7 @@ const QuestListScreen = ({navigation, route}) => {
               screenOptions={{
                 tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold', color: '#F9FDFC' },
                 tabBarItemStyle: { },
-                tabBarStyle: { backgroundColor: '#3D3F56' },
+                tabBarStyle: { backgroundColor: '#0c1725' },
               }}>
               <Tab.Screen name={"Offene Quests ("+activeQuestItems.length+")"} component={QuestList} initialParams={{ questItems: activeQuestItems, navigation: navigation }}/>
               <Tab.Screen name="Abgeschlossene Quests" component={QuestList} initialParams={{ questItems: doneQuestItems, navigation: navigation  }}/>

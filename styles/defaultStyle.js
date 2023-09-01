@@ -23,23 +23,32 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: '#040205',
         flex: 1,
         alignItems: 'center',
-        height: '100%'
+        height: '100%',
+        top: 50
     },
     pageTitle: {
-        color: '#F9FDFC',
+        color: '#35d3ea',
         fontSize: 32,
-        fontWeight: 'bold',
-        textAlign: 'center'
+        fontWeight: '300',
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        letterSpacing: 3
+        
     },
     inlineIcon: {
         resizeMode: 'contain',
     },
     text: {
-        color: '#F9FDFC',
-        textAlign: 'center'
+        color: '#35d3ea',
+        textAlign: 'center',
+        fontWeight: '300'
     },
     textDark: {
         color: '#8C9093'
+    },
+
+    textLight: {
+        color: '#fff'
     },
     textAlert: {
         color: '#D90B14'
@@ -48,10 +57,12 @@ const defaultStyles = StyleSheet.create({
         fontSize: 32
     },
     textBigger: {
-        fontSize: 26
+        fontSize: 45,
+        textTransform: 'uppercase',
     },
+
     textLeftBound: {
-        textAlign: 'left'
+        textAlign: 'left',
     },
     textBold: {
         fontWeight: 'bold',
@@ -60,8 +71,9 @@ const defaultStyles = StyleSheet.create({
         fontStyle: 'italic',
     },
     button: {
-        color: '#3D3F56',
+        color: '#101f31'
     },
+
     buttonOpen: {
         backgroundColor: '#3D3F56',
     },
@@ -78,6 +90,7 @@ const defaultStyles = StyleSheet.create({
         height: 50,
         flex: 1,
     },
+    
     buttonIndicatorText: {
         color: '#FD65AF',
         textAlign: 'center',
@@ -85,26 +98,34 @@ const defaultStyles = StyleSheet.create({
         right: -0.5,
         top: -1,
     },
+
     navButton: {
         margin: 6,
     },
+
     hsButton: {
-        color: '#F9FDFC',
-        backgroundColor: '#3D3F56',
+        color: '#35d3ea',
+        backgroundColor: '#101f31',
         margin: 6,
         minWidth: 250,
-        padding: 3
+        padding: 5
     },
+
     widthHalf: {
         width: '50%'
     },  
+
     textInput: {
         height: 40,
         marginBottom: 12,
         borderWidth: 1,
         padding: 10,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#040205",
+        borderBottomColor: '#35d3ea',
+        color: '#35d3ea',
+        textAlign: 'center'    
     },
+
     centeredView: {
         flex: 1,
         justifyContent: 'center',
@@ -113,22 +134,20 @@ const defaultStyles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
+        color: '#fff',
+        backgroundColor: '#101f31',
+        borderRadius: 0,
         padding: 25,
+        paddingBottom: 0,
+        borderColor: '#0c1725',
+        borderWidth: 20,
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
     },
+
     modalText: {
-        marginBottom: 15,
+        marginBottom: 0,
         textAlign: 'center',
+        color:'#35d3ea'
     },
     listContainer: {
         flex: 1,
@@ -142,10 +161,10 @@ const defaultStyles = StyleSheet.create({
         marginHorizontal: 16,
     },
     questItemOpen: {
-        backgroundColor: '#3D3F56',
+        backgroundColor: '#0c1725',
     },
     questItemDone: {
-        backgroundColor: '#323340',
+        backgroundColor: '#060d16',
     },
     camera: {
         width: '100%',
@@ -187,6 +206,14 @@ const defaultStyles = StyleSheet.create({
     },
     headerLogo: {
         width: '100%',
+    },
+
+    headerbg: {
+        width: '100%',
+    },
+
+    headerText: {
+    marginTop: -90,
     },
 
   });

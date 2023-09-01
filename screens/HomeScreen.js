@@ -34,23 +34,28 @@ const HomeScreen = ({navigation}) => {
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
 
+        <Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
             {adminMode && (<Text style={styles.pageTitle}>Admin Mode</Text>)}
 
-            <Spacer bottom={24} />
+            <Spacer bottom={12} />
 
             {userMode && <NavButton text={"Profil"} navigation={navigation} style={[styles.widthHalf]} navTarget={'Profile'}/>}
 
+            <Spacer bottom={12} />
+
             <NavButton text={"Quests"} navigation={navigation} navTarget={'QuestList'} style={[styles.widthHalf]}  numberIndicator={userState.openQuests == 0 ? null : userState.openQuests}/>
 
-            <Spacer bottom={64} />
+            <Spacer bottom={12} />
 
-            {userMode && <NavButton text={"QR Code Scannen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRScanner'}/>}
-
-            <NavButton text={"Highscore Tabellen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
+            <NavButton text={"Highscores"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'GameList'}/>
 
             {/*adminMode && <NavButton text={"QR Code erzeugen"} navigation={navigation} style={[styles.widthHalf]}  navTarget={'QRCodeGenerator'}/>*/}
 
-            <Spacer bottom={48} />
+            <Spacer bottom={36} />
             <HSButton text="Logout" 
               style={[styles.widthHalf]} 
               onPress={async () =>{

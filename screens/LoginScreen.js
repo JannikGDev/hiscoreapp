@@ -9,6 +9,7 @@ import { IsLoggedIn } from '../shared/GlobalStorage.js'
 
 
 
+
 const LoginScreen = ({navigation, route}) => {
 
     const {userState, setUserState} = useContext(UserContext);
@@ -26,12 +27,15 @@ const LoginScreen = ({navigation, route}) => {
 
         <Image style={styles.logo} source={require('../assets/hi-score_logo.png')} />
 
-        <Text style={styles.pageTitle}>Einloggen</Text>
+        <Image source={require('../assets/header-bg.png')} resizeMode="cover" />
+
+        <Text style={styles.pageTitle}>Login</Text>   
+      
 
         <Spacer bottom={24} />
         <SafeAreaView style = {{width: '80%'}}>
         <Text style={styles.text}>
-            Gib deinen Benutzernamen und Passwort ein um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
+            Gib deinen Benutzernamen und Passwort ein, um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
             </Text>
 
         <Spacer bottom={12} />
