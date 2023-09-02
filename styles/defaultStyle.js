@@ -23,7 +23,7 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: '#040205',
         flex: 1,
         alignItems: 'center',
-        height: '100%',
+        height: '100vh',
         top: 50
     },
     pageTitle: {

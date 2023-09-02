@@ -6,15 +6,12 @@ import { LogOut, IsLoggedIn } from '../shared/GlobalStorage.js';
 import { UserContext, GameContext } from '../shared/Contexts';
 import { GetUserData } from '../shared/HiscoreAPI';
 import { HSButton, NavButton } from '../shared/Controls';
-import {useWindowDimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const HomeScreen = ({navigation}) => {
 
     const deDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-    const {screenHeight, screenWidth, scale, fontScale} = useWindowDimensions();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [lastVisit, setLastVisit] = useState(new Date());
@@ -26,7 +23,7 @@ const HomeScreen = ({navigation}) => {
 
     return (
       <SafeAreaView>
-      <ScrollView style={[{height: screenHeight}]}>
+      <ScrollView style={[{height: '100vh'}]}>
         <View style={styles.pageContainer}>
 
             <Image 
@@ -34,10 +31,10 @@ const HomeScreen = ({navigation}) => {
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
 
-        <Image 
-            source={require('../assets/header-bg.png')} 
-            resizeMode="contain"
-            style={[{height: 100, width: '100%'}]}/>
+            <Image 
+              source={require('../assets/header-bg.png')} 
+              resizeMode="contain"
+              style={[{height: 100, width: '100%'}]}/>
 
             {adminMode && (<Text style={styles.pageTitle}>Admin Mode</Text>)}
 

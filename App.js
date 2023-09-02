@@ -63,7 +63,7 @@ export default function App() {
             let questResult = await GetQuests();
             if(questResult.success) {
               let quests = questResult.response;
-              newUserState.openQuests = quests.filter((quest) => !quest.done && quest.repetition == REPETITION_DAILY && quest.requirementsFulfilled && !quest.hidden).length;
+              newUserState.openQuests = quests.filter((quest) => !quest.done && quest.requirementsFulfilled && !quest.hidden).length;
             } 
             else
               newUserState.openQuests = 0;
