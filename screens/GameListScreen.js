@@ -54,7 +54,7 @@ const GameListScreen = ({navigation, route}) => {
 
     if(initiated === false) {
         return (<View style={styles.pageContainer}>
-                    <Text style={styles.pageTitle}>Game Highscores</Text>
+                    <Text style={styles.pageTitle}>Highscores</Text>
                 <ActivityIndicator style={styles.loader}/>
             </View>)
     }
@@ -63,7 +63,7 @@ const GameListScreen = ({navigation, route}) => {
 
     <ScrollView style={[styles.listContainer,{paddingTop: 32, height: screenHeight}]}>
 
-        <Text style={styles.pageTitle}>Game Highscores</Text>
+        <Text style={styles.pageTitle}>Highscores</Text>
 
         <PanelList panelItems={panelItems}>
 

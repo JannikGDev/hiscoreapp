@@ -128,17 +128,21 @@ const ExpView = ({exp, expNextLevel, multiplier, dayExp, preDayExp}) => {
     return (
         <View style={[styles.container, {flexDirection: 'column', alignItems: 'flex-start'}]}>
 
-            <Text style={styles.text}>EXP (gestern): {(exp - (dayExp*multiplier)).toFixed(0)}</Text>
-            <Spacer bottom={10}/>             
-            <Text style={styles.text}>EXP (heute): {dayExp} x {multiplier.toFixed(1)} = {(multiplier*dayExp).toFixed(0)}</Text>
-            <Spacer bottom={10}/>             
-            <Text style={styles.text}>EXP gesamt: {(multiplier*dayExp).toFixed(0)} + {(exp - multiplier*dayExp).toFixed(0)} = {exp.toFixed(0)}</Text>
-            <Spacer bottom={10}/>             
+            <Text style={styles.text}>EXP gesamt: {exp.toFixed(0)}</Text>
+            <Spacer bottom={10}/>            
+            <Text style={styles.text}>Noch {expNextLevel.toFixed(0)} EXP zum Levelaufstieg!</Text>
+            <Spacer bottom={30}/>      
+
             <Text style={styles.text}>Heute gesammelte EXP: {dayExp.toFixed(0)}</Text>
             <Spacer bottom={10}/>             
             <Text style={styles.text}>Aktiver Multiplikator: x{multiplier.toFixed(1)}</Text>
             <Spacer bottom={10}/>             
-            <Text style={styles.text}>Noch {expNextLevel.toFixed(0)} EXP zum nächsten Level</Text>
+            
+            {/*<Text style={styles.text}>EXP (gestern): {(exp - (dayExp*multiplier)).toFixed(0)}</Text>
+            <Spacer bottom={10}/>             
+            <Text style={styles.text}>EXP (heute): {dayExp} x {multiplier.toFixed(1)} = {(multiplier*dayExp).toFixed(0)}</Text>
+            <Spacer bottom={10}/>*/}     
+
         </View>
     )
 };
