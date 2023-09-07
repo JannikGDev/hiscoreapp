@@ -54,7 +54,7 @@ const defaultStyles = StyleSheet.create({
         color: '#D90B14'
     },
     textBig: {
-        fontSize: 32
+        fontSize: 24
     },
     textBigger: {
         fontSize: 45,
@@ -185,19 +185,22 @@ const defaultStyles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         aspectRatio: 3,
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        marginTop:'20px'
     },
     panel: {
         flex: 0.3,
         margin: 12,
         backgroundColor: 'black',
-        borderWidth: 4,
-        borderRadius: 2,
+        borderWidth: 2,
+        borderRadius: 0,
         aspectRatio: 1,
-        borderColor: 'white'
+        borderColor: '#35d3ea',
+        marginBottom: '20px'
     },
     panelText: {
-        marginTop: 3,
+        marginTop: 3
+   
     },
     panelImage: {
         width: '100%',
@@ -214,6 +217,7 @@ const defaultStyles = StyleSheet.create({
 
     headerText: {
     marginTop: -90,
+    paddingBottom:'20px'
     },
 
   });

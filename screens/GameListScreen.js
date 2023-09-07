@@ -52,9 +52,22 @@ const GameListScreen = ({navigation, route}) => {
         onPress: () => navigation.navigate('HighscoreList', {game: game})
     }});
 
+
+
     if(initiated === false) {
         return (<View style={styles.pageContainer}>
-                    <Text style={styles.pageTitle}>Highscores</Text>
+
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+                    <Text style={[styles.pageTitle, styles.headerText]}>Highscores</Text>
+
+
+
+
+                    
                 <ActivityIndicator style={styles.loader}/>
             </View>)
     }
@@ -63,7 +76,13 @@ const GameListScreen = ({navigation, route}) => {
 
     <ScrollView style={[styles.listContainer,{paddingTop: 32, height: screenHeight}]}>
 
-        <Text style={styles.pageTitle}>Highscores</Text>
+
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+        <Text style={[styles.pageTitle, styles.headerText]}>Highscores</Text>
 
         <PanelList panelItems={panelItems}>
 

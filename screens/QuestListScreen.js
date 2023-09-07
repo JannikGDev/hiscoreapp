@@ -126,6 +126,7 @@ export const QuestListItem = ({entry, navigation}) =>
                     <Text style={[styles.text, styles.textItalic, {flex: 1}]}>{GetRepetitionString(quest.repetition)}</Text>
                     <Text style={[styles.text, {flex: 1}]}>{GetQuestRewardExp(quest)}{GetQuestRewardMultiplier(quest)}</Text>
                     <Text style={[styles.text, {flex: 0.5}]}> {quest.done ? "Erledigt!" : "Offen"} </Text>
+                    
                 </View>
             </Pressable>
         </View>

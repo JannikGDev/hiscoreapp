@@ -83,8 +83,15 @@ const HighscoreListScreen = ({navigation, route}) => {
         </Image>
         </View>
         }
-        <Text style={styles.pageTitle}>{game.name}</Text>
-        <Text style={styles.pageTitle}>Highscores</Text>
+
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+        <Text style={[styles.text, styles.textBig, styles.headerText]}>Highscores</Text>
+        <Text style={[styles.textLight, styles.textBigger]}>{game.name}</Text>
+
         
         
         
@@ -97,12 +104,18 @@ const HighscoreListScreen = ({navigation, route}) => {
             {categories.map((category) => 
 
             <View style={{width: '100%', paddingHorizontal: '10%'}}>
-                <Text style={styles.pageTitle}>Kategorie: {category.categoryName}</Text>
+                <Text style={[styles.text, styles.textBig]}>Kategorie: {category.categoryName}</Text>
+
+                <Spacer bottom={36} />  
+
+
                 <NavButton text={"Highscore einreichen"} 
                             navigation={navigation} 
                             navTarget={'HighscoreSubmit'} 
                             style={styles.hsButton} 
                             params={{...route.params, categoryId: category.id}} />
+
+
                 { category.userHighscore && 
                     <View>
                         <Text style={styles.pageTitle}>Dein Highscore</Text>
@@ -111,7 +124,15 @@ const HighscoreListScreen = ({navigation, route}) => {
                         </SafeAreaView>
                     </View>
                 }
-                <Text style={styles.pageTitle}>Top 10</Text>
+
+<Spacer bottom={36} />  
+
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+            
+            <Text style={[styles.pageTitle, styles.headerText]}>Top 10</Text>
                 <View style={[styles.listContainer,{width: '100%'}]}>
                     <FlatList
                         data={category.highscores}
