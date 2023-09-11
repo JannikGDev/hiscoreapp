@@ -20,12 +20,21 @@ const PasswordResetScreen = ({navigation, route}) => {
     return (
         <View style={styles.pageContainer}> 
 
-        <Text style={styles.pageTitle}>Passwort zurücksetzen</Text>
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+            <Text style={[styles.text, styles.textBig, styles.headerText, styles.pageTitle]}>Passwort zurücksetzen{"\n"}</Text>
+
+
+      
 
         <Spacer bottom={24} />
+        
         <SafeAreaView style = {{width: '80%'}}>
         <Text style={styles.text}>
-            Gib deine Mailadresse ein, um dein Passwort zurückzusetzen.
+            Gib deine E-Mailadresse ein, um dein Passwort zurückzusetzen.
             </Text>
         <Spacer bottom={12} />
         </SafeAreaView>
@@ -78,7 +87,7 @@ const PasswordResetScreen = ({navigation, route}) => {
         <Spacer bottom={32} />
         
         <Text style={[styles.text,{width: '80%', textAlign: 'center'}]}>
-            Gib den Code aus der e-Mail ein und wähle ein neues Passwort
+            Gib den Code aus der E-Mail ein und wähle ein neues Passwort
         </Text>
 
 

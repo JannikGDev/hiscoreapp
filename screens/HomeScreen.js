@@ -31,6 +31,8 @@ const HomeScreen = ({navigation}) => {
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
 
+             <Spacer bottom={12} />           
+
             <Image 
               source={require('../assets/header-bg.png')} 
               resizeMode="contain"

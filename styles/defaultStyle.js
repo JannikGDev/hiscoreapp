@@ -220,6 +220,16 @@ const defaultStyles = StyleSheet.create({
     paddingBottom:'20px'
     },
 
+
+    profileItem: {
+        
+        backgroundColor:'888',
+        borderWidth: 0,
+        borderColor: '#cff',
+        padding:0,
+        margin: 0
+        },
+
   });
   
 

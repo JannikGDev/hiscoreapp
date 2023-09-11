@@ -25,11 +25,22 @@ const LoginScreen = ({navigation, route}) => {
     return (
         <View style={styles.pageContainer}> 
 
-        <Image style={styles.logo} source={require('../assets/hi-score_logo.png')} />
 
-        <Image source={require('../assets/header-bg.png')} resizeMode="cover" />
+        <Image 
+            source={require('../assets/hi-score_logo.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
 
-        <Text style={styles.pageTitle}>Login</Text>   
+<Spacer bottom={12} />
+
+        <Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+            <Text style={[styles.text, styles.textBig, styles.headerText, styles.pageTitle]}>Login{"\n"}</Text>
+
+
       
 
         <Spacer bottom={24} />
@@ -38,7 +49,7 @@ const LoginScreen = ({navigation, route}) => {
             Gib deinen Benutzernamen und Passwort ein, um dich einzuloggen oder registriere dich, wenn du noch keinen Account hast.
             </Text>
 
-        <Spacer bottom={12} />
+        <Spacer bottom={24} />
         </SafeAreaView>
 
         <MessageBox 
