@@ -4,6 +4,7 @@ import styles from '../styles/defaultStyle';
 import Spacer from '../shared/Spacer'
 import MessageBox from '../shared/MessageBox'
 import { Register } from '../shared/HiscoreAPI'
+import { NavButton, HSButton } from '../shared/Controls';
 
 
 
@@ -18,6 +19,8 @@ const RegisterScreen = ({ navigation, route }) => {
     const [message, setMessage] = useState("");
 
     const [registerComplete, setRegisterComplete] = useState(false);
+
+    const requiredFieldsMissing = userName.length == 0 || password.length == 0 || mail.length == 0;
 
     return (
         <View style={styles.pageContainer}>
@@ -73,48 +76,44 @@ const RegisterScreen = ({ navigation, route }) => {
 
             <Spacer bottom={16} />
 
-            <View style={{ width: '50%' }}>
-                <Button
-                    title="Registrieren"
-                    color={styles.button.color}
-                    onPress={async () => {
-                        if (registerComplete)
-                            return;
+            <HSButton text={"Registrieren"} style={[styles.widthHalf]}
+            disable={requiredFieldsMissing}
+            onPress={async () => {
+                    if (registerComplete)
+                        return;
 
-                        if (userName.length == 0 || password.length < 8 || mail.length == 0) {
-                            setMessage("Bitte gebe einen Nutzernamen, eine E-Mail und ein Passwort mit mindestens 8 Zeichen an.");
-                            setShowMessage(true);
-                            return;
-                        }
-
-                        let result = await Register(userName, password, mail);
-
-                        if (result.statusCode != 200) {
-                            console.log(result);
-                            if (result.message.includes('The given UserName')) {
-                                setMessage("Der eingegebene Benutzername ist bereits vergeben.");
-                                setShowMessage(true);
-                            }
-                            else if (result.message.includes('The given Mail')) {
-                                setMessage("Die eingegebene E-Mail ist bereits vergeben.");
-                                setShowMessage(true);
-                            }
-                            else {
-                                setMessage("Die Eingabe wurde abgelehnt mit der Nachricht: " + result.message);
-                                setShowMessage(true);
-                            }
-
-                            return;
-                        }
-
-                        setMessage(result.message);
+                    if (userName.length == 0 || password.length < 8 || mail.length == 0) {
+                        setMessage("Bitte gebe einen Nutzernamen, eine E-Mail und ein Passwort mit mindestens 8 Zeichen an.");
                         setShowMessage(true);
-                        if (result.success)
-                            setRegisterComplete(true);
+                        return;
                     }
+
+                    let result = await Register(userName, password, mail);
+
+                    if (result.statusCode != 200) {
+                        console.log(result);
+                        if (result.message.includes('The given UserName')) {
+                            setMessage("Der eingegebene Benutzername ist bereits vergeben.");
+                            setShowMessage(true);
+                        }
+                        else if (result.message.includes('The given Mail')) {
+                            setMessage("Die eingegebene E-Mail ist bereits vergeben.");
+                            setShowMessage(true);
+                        }
+                        else {
+                            setMessage("Die Eingabe wurde abgelehnt mit der Nachricht: " + result.message);
+                            setShowMessage(true);
+                        }
+
+                        return;
                     }
-                />
-            </View>
+
+                    setMessage(result.message);
+                    setShowMessage(true);
+                    if (result.success)
+                        setRegisterComplete(true);
+                }}
+            />
 
         </View>
     )

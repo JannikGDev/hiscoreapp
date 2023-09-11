@@ -108,7 +108,16 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: '#101f31',
         margin: 6,
         minWidth: 250,
-        padding: 5
+        padding: 5,
+        backgroundSize: '100% 100%',
+    },
+
+    hsButtonEnabled: {
+        backgroundImage: `url(${require("../assets/button-normal.png")})`,
+    },
+
+    hsButtonDisabled: {
+        backgroundImage: `url(${require("../assets/button-grey.png")})`,
     },
 
     widthHalf: {

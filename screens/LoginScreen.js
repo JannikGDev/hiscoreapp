@@ -6,6 +6,7 @@ import MessageBox from '../shared/MessageBox'
 import { Login, GetUserData } from '../shared/HiscoreAPI'
 import { UserContext } from '../shared/Contexts';
 import { IsLoggedIn } from '../shared/GlobalStorage.js'
+import { NavButton, HSButton } from '../shared/Controls';
 
 
 
@@ -21,6 +22,9 @@ const LoginScreen = ({navigation, route}) => {
     const [message, setMessage] = useState("");
 
     const [loginComplete, setLoginComplete] = useState(false);
+
+
+    const validLogin = userName.length > 0 && password.length > 0;
 
     return (
         <View style={styles.pageContainer}> 
@@ -81,69 +85,51 @@ const LoginScreen = ({navigation, route}) => {
 
         <Spacer bottom={16} />
 
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Einloggen"
-            color={styles.button.color}
-            onPress={ async () =>
-            {
-                if(loginComplete)
-                    return;
 
-                if(userName.length == 0 || password.length == 0)
+        <HSButton text={"Einloggen"} style={[styles.widthHalf]}
+            disable={!validLogin}
+            onPress={async () =>
                 {
-                    setMessage("Bitte gib einen Benutzernamen und Passwort ein.");
-                    setShowMessage(true);
-                    return;
-                }
-                let result = await Login(userName, password);
-
-                if(result.statusCode == 401) {
-                    setMessage("Benutzername und Passwort stimmen nicht überein.");
-                    setShowMessage(true);
-                    return;
-                }
-
-                let loggedIn = await IsLoggedIn();
-                let isAdmin = false;
-      
-                if(loggedIn) {
-                  let result = await GetUserData();
-                  loggedIn = loggedIn && result.success;
-                  isAdmin = result.response.isAdmin;
-                }
-
-                let newUserState = {...userState};
-                newUserState.loggedIn = loggedIn;
-                newUserState.isAdmin = isAdmin;
-                setUserState(newUserState);
-            }}
-            />
-        </View>
-
-        <Spacer bottom={16} />
-
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Registrieren"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('Register')
-            }
-            />
-        </View>
+                    if(loginComplete)
+                        return;
+    
+                    if(userName.length == 0 || password.length == 0)
+                    {
+                        setMessage("Bitte gib einen Benutzernamen und Passwort ein.");
+                        setShowMessage(true);
+                        return;
+                    }
+                    let result = await Login(userName, password);
+    
+                    if(result.statusCode == 401) {
+                        setMessage("Benutzername und Passwort stimmen nicht überein.");
+                        setShowMessage(true);
+                        return;
+                    }
+    
+                    let loggedIn = await IsLoggedIn();
+                    let isAdmin = false;
+          
+                    if(loggedIn) {
+                      let result = await GetUserData();
+                      loggedIn = loggedIn && result.success;
+                      isAdmin = result.response.isAdmin;
+                    }
+    
+                    let newUserState = {...userState};
+                    newUserState.loggedIn = loggedIn;
+                    newUserState.isAdmin = isAdmin;
+                    setUserState(newUserState);
+                }}
+        />
 
         <Spacer bottom={16} />
 
-        <View style = {{width: '50%'}}>
-            <Button
-            title="Passwort vergessen?"
-            color={styles.button.color}
-            onPress={() =>
-                navigation.navigate('PasswordReset')
-            }
-            />
-        </View>
+        <NavButton text={"Registrieren"} navigation={navigation} style={[styles.widthHalf]} navTarget={'Register'}/>
+
+        <Spacer bottom={16} />
+
+        <NavButton text={"Passwort vergessen?"} navigation={navigation} style={[styles.widthHalf]} navTarget={'PasswordReset'}/>
 
         </View>
     )
