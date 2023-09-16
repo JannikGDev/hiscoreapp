@@ -8,6 +8,7 @@ import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '
 import { PanelList } from '../shared/Components';
 import { GUID_EMPTY } from '../shared/Constants';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ScreenWrapper } from '../shared/Controls';
 
 const GameListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
@@ -55,7 +56,7 @@ const GameListScreen = ({navigation, route}) => {
 
 
     if(initiated === false) {
-        return (<View style={styles.pageContainer}>
+        return (<ScreenWrapper>
 
 <Image 
             source={require('../assets/header-bg.png')} 
@@ -69,7 +70,7 @@ const GameListScreen = ({navigation, route}) => {
 
                     
                 <ActivityIndicator style={styles.loader}/>
-            </View>)
+            </ScreenWrapper>)
     }
     else{
     return (

@@ -6,6 +6,7 @@ import Moment from 'moment';
 import { NavButton } from '../shared/Controls';
 import Spacer from '../shared/Spacer';
 import { GUID_EMPTY } from '../shared/Constants';
+import { ScreenWrapper } from '../shared/Controls';
 
 const HighscoreListScreen = ({navigation, route}) => {
 
@@ -76,15 +77,18 @@ const HighscoreListScreen = ({navigation, route}) => {
 
 
     return (
-    <View style={styles.pageContainer}>
+    <ScreenWrapper>
         {gameImage != "" && 
-        <View style={{maxHeight: '40%', width: '100%', height: '100%'}}>
-        <Image source={gameImage} style={styles.panelImage}>
-        </Image>
-        </View>
+            <View style={{maxHeight: '40%', width: '50vw', height: '50vw'}}>
+            <Image 
+                source={gameImage}
+                style={{width: '100%', height: '100%'}}
+                resizeMode='contain'
+            />
+            </View>
         }
 
-<Image 
+            <Image 
             source={require('../assets/header-bg.png')} 
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
@@ -125,9 +129,9 @@ const HighscoreListScreen = ({navigation, route}) => {
                     </View>
                 }
 
-<Spacer bottom={36} />  
+            <Spacer bottom={36} />  
 
-<Image 
+            <Image 
             source={require('../assets/header-bg.png')} 
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
@@ -144,7 +148,7 @@ const HighscoreListScreen = ({navigation, route}) => {
             
             )}
         </>}
-    </View>);
+    </ScreenWrapper>);
 };
 
 

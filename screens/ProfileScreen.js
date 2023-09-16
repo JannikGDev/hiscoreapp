@@ -5,6 +5,7 @@ import Spacer from '../shared/Spacer'
 import {GetUserData, ChangeAvatar} from '../shared/HiscoreAPI.js'
 import Avatars from '../shared/Avatars';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScreenWrapper } from '../shared/Controls';
 
 
 
@@ -55,25 +56,25 @@ const ProfileScreen = ({navigation, route}) => {
     }, []);
 
     if(initiated === false) {
-        return (<View style={styles.pageContainer}></View>)
+        return (<ScreenWrapper></ScreenWrapper>)
     }
     else{
     return (
-        <View style={styles.pageContainer}>
+        <ScreenWrapper>
             <Spacer bottom={24} />
             
-            <Pressable style={{flex: 0.1, width: '40%', justifyContent: 'flex-end', flexDirection: 'row'}}
-            onPress={async () => {
-                if(editMode) {
-                    await ChangeAvatar(avatarNum);
-                }
-                setEditMode(!editMode);
-            }}>
+            <Pressable style={{flex: 0.3, width: '40%', justifyContent: 'flex-end', flexDirection: 'row'}}
+                onPress={async () => {
+                    if(editMode) {
+                        await ChangeAvatar(avatarNum);
+                    }
+                    setEditMode(!editMode);
+                }}>
                 <Image style={[styles.inlineIcon,{flex: 0.2}]} source={editMode ? require('../assets/save.png') : require('../assets/edit.png')} />
             </Pressable>
 
             <Image source={Avatars[avatarNum]}
-                style={{width: '50%', flex: 0.5}} 
+                style={{width: '50%', height: '30vw'}} 
                 resizeMode='contain'
             ></Image>
 
@@ -117,7 +118,7 @@ const ProfileScreen = ({navigation, route}) => {
             <View style={[styles.container, {width: '60%'}]}>
             <ExpView exp={currentExp} expNextLevel={nextLevelExp} multiplier={multiplier} dayExp={dayExp}/>
             </View>
-        </View>
+        </ScreenWrapper>
         )
     }
 };

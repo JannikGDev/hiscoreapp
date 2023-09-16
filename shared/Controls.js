@@ -1,6 +1,7 @@
 import styles from '../styles/defaultStyle';
 import React, {useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable, ImageBackground  } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export const NavButton = ({text, navigation, navTarget, style, params, numberIndicator, disable}) => {
@@ -41,5 +42,18 @@ export const HSButton = ({text, style, onPress, numberIndicator, disable}) => {
     );
 
 };
+
+export const ScreenWrapper = ({children}) => {
+    return(
+        <SafeAreaView>
+            <ScrollView style={[{height: '100vh'}]}>
+                <View style={styles.pageContainer}>
+                {children}
+                </View>
+            </ScrollView>
+        </SafeAreaView>
+
+    );
+}
 
 
