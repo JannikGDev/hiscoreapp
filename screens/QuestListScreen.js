@@ -7,6 +7,7 @@ import {GetQuestRewardMultiplier, GetQuestRewardExp, GetRepetitionString} from '
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { REPETITION_DAILY } from '../shared/Constants';
+import { ScreenWrapper } from '../shared/Controls';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -15,15 +16,6 @@ const QuestListScreen = ({navigation, route}) => {
     const [questItems, setQuestItems] = useState([]);
     const [activeQuestItems, setActiveQuestItems] = useState([]);
     const [doneQuestItems, setDoneQuestItems] = useState([]);
-
-/*
-    console.log("Daily");
-    console.log(dailyQuestItems);
-    console.log("Active");
-    console.log(aktiveQuestItems);
-    console.log("Done");
-    console.log(doneQuestItems);
-    */
 
     useEffect( () => {
         // declare the data fetching function
@@ -63,12 +55,12 @@ const QuestListScreen = ({navigation, route}) => {
     }, []);
 
     if(initiated === false) {
-        return (<View style={styles.pageContainer}></View>)
+        return (<ScreenWrapper></ScreenWrapper>)
     }
     else{    
         
         return (
-            <NavigationContainer independent={true} style={{height: '100%', width: '100%'}}>
+            <NavigationContainer independent={true} style={{height: '100vh', width: '100%'}}>
             <Tab.Navigator
               screenOptions={{
                 tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold', color: '#F9FDFC' },
@@ -90,7 +82,7 @@ const QuestList = ({route}) => {
     let navigation = route.params.navigation;
 
     return (
-        <View style={[styles.listContainer,{paddingTop: 32}]}>
+        <View style={[styles.listContainer,{paddingTop: 32},{height: '100vh'}]}>
         <SafeAreaView style={[styles.listContainer]}>
 
             <FlatList

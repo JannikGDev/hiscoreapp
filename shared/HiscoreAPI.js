@@ -215,6 +215,13 @@ export const GetHighscoresTopTen = async (gameId, categoryId) => {
   return result;
 };
 
+export const GetHighscoresTopTenThisMonth = async (gameId, categoryId) => {
+  const request_url = API_BASE_URL + '/Highscore/GetHighscoresTopTenCurrentMonth?gameid=' + gameId + '&categoryid=' + categoryId;
+
+  var result = await SendRequest(request_url, 'GET', {}, null);
+  return result;
+};
+
 export const GenerateQRCode = async (taskId) => {
   const request_url = API_BASE_URL + '/Quest/qrcode?id=' + taskId;
 

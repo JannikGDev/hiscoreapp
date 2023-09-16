@@ -159,7 +159,6 @@ const defaultStyles = StyleSheet.create({
         color:'#35d3ea'
     },
     listContainer: {
-        flex: 1,
         backgroundColor: '#040205',
         marginTop: 0,
     },

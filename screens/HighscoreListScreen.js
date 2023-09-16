@@ -1,7 +1,7 @@
 import styles from '../styles/defaultStyle';
 import React, {useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, StatusBar, SafeAreaView, TouchableOpacity, Pressable } from 'react-native';
-import {GetHighscores, GetHighscoresTopTen, GetUserData, GetImage} from '../shared/HiscoreAPI.js';
+import {GetHighscores, GetHighscoresTopTen, GetUserData, GetImage, GetHighscoresTopTenThisMonth} from '../shared/HiscoreAPI.js';
 import Moment from 'moment';
 import { NavButton } from '../shared/Controls';
 import Spacer from '../shared/Spacer';
@@ -32,20 +32,24 @@ const HighscoreListScreen = ({navigation, route}) => {
                 let hsCategory = hsCategories[i];
 
                 let result = await GetHighscoresTopTen(game.id, hsCategory.id);
-                console.log(result);
                 if(!result.success) {
                     return;
                 }
-                    
+
+                let resultMonth = await GetHighscoresTopTenThisMonth(game.id, hsCategory.id);
+                if(!resultMonth.success) {
+                    return;
+                }    
+
+
                 let highscoreList = result.response;
+                let highscoreListMonthly = resultMonth.response;
                 let category = {
                     ...hsCategory,
                     highscores: highscoreList,
+                    highscoresMonthly: highscoreListMonthly,
                     userHighscore: null,
                 };
-
-
-                console.log(category);
 
                 let userDataResult = await GetUserData();
                 if(!userDataResult.success){
@@ -63,8 +67,6 @@ const HighscoreListScreen = ({navigation, route}) => {
 
 
                 categories.push(category);
-
-                console.log(category);
             }
             setCategories(categories);
             setInitiated(true);
@@ -136,14 +138,30 @@ const HighscoreListScreen = ({navigation, route}) => {
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
             
-            <Text style={[styles.pageTitle, styles.headerText]}>Top 10</Text>
-                <View style={[styles.listContainer,{width: '100%'}]}>
-                    <FlatList
-                        data={category.highscores}
-                        renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
-                        keyExtractor={highscore => highscore.id}
-                    />
-                </View>
+            <Text style={[styles.pageTitle, styles.headerText]}>Top 10 All-Time</Text>
+            <View style={[styles.listContainer,{width: '100%'}]}>
+                <FlatList
+                    data={category.highscores}
+                    renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
+                    keyExtractor={highscore => highscore.id}
+                />
+            </View>
+            
+
+            <Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+            <Text style={[styles.pageTitle, styles.headerText]}>Top 10 Aktueller Monat</Text>
+            <View style={[styles.listContainer,{width: '100%'}]}>
+                <FlatList
+                    data={category.highscoreListMonthly}
+                    renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
+                    keyExtractor={highscore => highscore.id}
+                />
+            </View>
+
             </View>
             
             )}
