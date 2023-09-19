@@ -4,11 +4,17 @@ const API_BASE_URL = 'https://app.hi-score.org/api';
 
 const SendRequest = async (url, method, headers, body, onSuccessMessage = "Action successful", deleteContentType = false) => {
 
+  let accept = 'application/json';
+
+  if(headers['Accept']) {
+    accept = headers['Accept'];
+  }
+
   const options = {
     method: method,
     headers: {
       ...headers,
-      'Accept': 'application/json',
+      'Accept': accept,
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "X-Requested-With"
     },
@@ -154,7 +160,26 @@ export const GetQuests = async () => {
 export const GetImage = async (imageId) => {
   const request_url = API_BASE_URL + '/Image?imageId=' + imageId;
 
-  var result = await SendRequest(request_url, 'GET', {}, null);
+  let headers = {};
+
+  const response = await fetch(request_url, {
+    method: "GET",
+    headers: {
+      ...headers,
+      'Accept': 'image/png',
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "X-Requested-With"
+    },
+    body: null,
+  })
+    .catch(error => {
+      console.error(error);
+      return { message: error, success: false };
+    });
+
+  let blob = await response.blob();
+  let base64 = await blobToBase64(blob);
+  let result = {response: {byte64: base64}, success: true};
   return result;
 }
 
