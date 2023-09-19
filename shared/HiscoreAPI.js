@@ -260,7 +260,7 @@ export const GenerateQRCode = async (taskId) => {
     method: "GET",
     headers: {
       ...headers,
-      'Accept': 'image/png',
+      'Accept': 'image/*',
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "X-Requested-With"
     },
