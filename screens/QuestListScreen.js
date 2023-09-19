@@ -27,7 +27,7 @@ const QuestListScreen = ({navigation, route}) => {
             }
                 
             let questList = result.response;
-            console.log(questList);
+            //console.log(questList);
             setQuestItems(questList);
             
             let activeQuests = [];

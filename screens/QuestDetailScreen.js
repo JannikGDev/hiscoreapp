@@ -14,10 +14,7 @@ import { NavButton } from '../shared/Controls';
 const QuestDetailScreen = ({route, navigation}) => {
 
     let quest = route.params.quest;
-
-
-
-    console.log(quest);
+    //console.log(quest);
 
     return(
         <View style={styles.pageContainer}>

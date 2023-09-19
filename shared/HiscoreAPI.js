@@ -204,12 +204,12 @@ export const UploadHighscore = async (gameId, categoryId, imageUri, score) => {
     name: 'highscore' + '_' + Date.now() + '.png'
   };
 
-  console.log(blob);
+  //console.log(blob);
 
   const formData = new FormData();
   formData.append('imageFile', blob);
 
-  console.log(formData);
+  //console.log(formData);
 
   var result = await SendRequest(request_url, 'POST', headers, formData, "success", true);
   return result;
