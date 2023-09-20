@@ -14,7 +14,7 @@ const HighscoreListScreen = ({navigation, route}) => {
     const [initiated, setInitiated] = useState(false);
     const [categories, setCategories] = useState([]);
     const [gameImage, setGameImage] = useState("");
-    console.log(game);
+    //console.log(game);
 
     Moment.locale('de');
 
@@ -58,7 +58,7 @@ const HighscoreListScreen = ({navigation, route}) => {
                 
                 let userData = userDataResult.response;
                 let userHighscoreResult = await GetHighscores(game.id, hsCategory.id, userData.id);
-                console.log(userHighscoreResult);
+                //console.log(userHighscoreResult);
                 if(!userHighscoreResult.success) {
                     return;
                 }
@@ -156,7 +156,7 @@ const HighscoreListScreen = ({navigation, route}) => {
             <Text style={[styles.pageTitle, styles.headerText]}>Top 10 Aktueller Monat</Text>
             <View style={[styles.listContainer,{width: '100%'}]}>
                 <FlatList
-                    data={category.highscoreListMonthly}
+                    data={category.highscoresMonthly}
                     renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
                     keyExtractor={highscore => highscore.id}
                 />
