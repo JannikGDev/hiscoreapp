@@ -82,15 +82,13 @@ const QuestList = ({route}) => {
     let navigation = route.params.navigation;
 
     return (
-        <View style={[styles.listContainer,{paddingTop: 32},{height: '100vh'}]}>
-        <SafeAreaView style={[styles.listContainer]}>
+        <View style={[{height: '100%'}, styles.listContainer]}>
 
             <FlatList
                 data={questItems}
                 renderItem={(entry) => <QuestListItem entry={entry} navigation={navigation}/>}
                 keyExtractor={entry => entry.id}
             />
-        </SafeAreaView>
         </View>
     )
 

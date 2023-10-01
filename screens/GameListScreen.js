@@ -23,7 +23,7 @@ const GameListScreen = ({navigation, route}) => {
         const fetchData = async () => {
             let result = await GetGames();
             if(!result.success) {
-                console.log(result);
+                //console.log(result);
                 return;
             }
                 

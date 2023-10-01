@@ -19,7 +19,7 @@ export const QRScannerScreen = ({navigation, route}) => {
     
     setHasPermission(response.status === 'granted');
     if(!hasPermission) {
-      console.log(response);
+      //console.log(response);
     }
   };
   useEffect(() => {
@@ -58,7 +58,7 @@ export const QRScannerScreen = ({navigation, route}) => {
     }
 
     var successMessage = `Du hast die Quest ${result.response.name} absolviert!`;
-    console.log(successMessage);
+    //console.log(successMessage);
     if(result.response.exp > 0) {
       successMessage += ` Du hast ${result.response.exp} EXP bekommen!`;
     }

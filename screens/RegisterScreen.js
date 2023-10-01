@@ -91,7 +91,7 @@ const RegisterScreen = ({ navigation, route }) => {
                     let result = await Register(userName, password, mail);
 
                     if (result.statusCode != 200) {
-                        console.log(result);
+                        //console.log(result);
                         if (result.message.includes('The given UserName')) {
                             setMessage("Der eingegebene Benutzername ist bereits vergeben.");
                             setShowMessage(true);
