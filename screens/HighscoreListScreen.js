@@ -110,28 +110,32 @@ const HighscoreListScreen = ({navigation, route}) => {
             {categories.map((category) => 
 
             <View style={{width: '100%', paddingHorizontal: '10%'}}>
-                <Text style={[styles.text, styles.textBig]}>Kategorie: {category.categoryName}</Text>
+               {/* <Text style={[styles.text, styles.textBig]}>Kategorie: {category.categoryName}</Text>*/}
 
                 <Spacer bottom={36} />  
 
 
-                <NavButton text={"Highscore einreichen"} 
-                            navigation={navigation} 
-                            navTarget={'HighscoreSubmit'} 
-                            style={styles.hsButton} 
-                            params={{...route.params, categoryId: category.id}} />
 
 
-                { category.userHighscore && 
+        {/*         { category.userHighscore && 
                     <View>
-                        <Text style={styles.pageTitle}>Dein Highscore</Text>
+                        <Text style={styles.pageTitle}>Deine Highscore</Text>
                         <SafeAreaView style={[{ width: '100%'}]}>
                         <HighscoreItem highscore={category.userHighscore} />
                         </SafeAreaView>
                     </View>
                 }
 
-            <Spacer bottom={36} />  
+            <Spacer bottom={36} />  */}
+
+            <NavButton text={"Neue Highscore einreichen"} 
+                            navigation={navigation} 
+                            navTarget={'HighscoreSubmit'} 
+                            style={styles.hsButton} 
+                            params={{...route.params, categoryId: category.id}} />
+
+<Spacer bottom={36} /> 
+<Spacer bottom={36} /> 
 
             <Image 
             source={require('../assets/header-bg.png')} 
@@ -147,20 +151,20 @@ const HighscoreListScreen = ({navigation, route}) => {
                 />
             </View>
             
-
-            <Image 
+            <Spacer bottom={36} /> 
+         {/*     <Image 
             source={require('../assets/header-bg.png')} 
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
 
-            <Text style={[styles.pageTitle, styles.headerText]}>Top 10 Aktueller Monat</Text>
+          <Text style={[styles.pageTitle, styles.headerText]}>Top 10 (30 Tage)</Text>
             <View style={[styles.listContainer,{width: '100%'}]}>
                 <FlatList
                     data={category.highscoresMonthly}
                     renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
                     keyExtractor={highscore => highscore.id}
                 />
-            </View>
+            </View>*/}
 
             </View>
             
