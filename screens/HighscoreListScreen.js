@@ -109,8 +109,8 @@ const HighscoreListScreen = ({navigation, route}) => {
 
             {categories.map((category) => 
 
-            <View style={{width: '100%', paddingHorizontal: '10%'}}>
-               {/* <Text style={[styles.text, styles.textBig]}>Kategorie: {category.categoryName}</Text>*/}
+<View style={{width: '100%', paddingHorizontal: '10%'}}>
+                    {/*        <Text style={[styles.text, styles.textBig]}>Kategorie: {category.categoryName}</Text>*/}
 
                 <Spacer bottom={36} />  
 
@@ -128,7 +128,7 @@ const HighscoreListScreen = ({navigation, route}) => {
 
             <Spacer bottom={36} />  */}
 
-            <NavButton text={"Neue Highscore einreichen"} 
+            <NavButton text={"Neue Highscore \n einreichen"} 
                             navigation={navigation} 
                             navTarget={'HighscoreSubmit'} 
                             style={styles.hsButton} 
@@ -142,8 +142,8 @@ const HighscoreListScreen = ({navigation, route}) => {
             resizeMode="contain"
             style={[{height: 100, width: '100%'}]}/>
             
-            <Text style={[styles.pageTitle, styles.headerText]}>Top 10 All-Time</Text>
-            <View style={[styles.listContainer,{width: '100%'}]}>
+            <Text style={[styles.pageTitle, styles.headerText]}>Top 10</Text>
+            <View style={[styles.listContainer, styles.hiscoreListContainer, {width: '100%', textAlign: 'center'}]}>
                 <FlatList
                     data={category.highscores}
                     renderItem={(entry) => <HighscoreItem highscore={entry.item} entry={entry}/>}
@@ -180,15 +180,31 @@ const HighscoreItem = ({highscore, titleOverwrite, entry}) =>
     return  (
         <View style={[styles.listItem, {padding: 0}]}>
             <View style={[styles.listItem, {flexDirection: 'column'}]}>
-                <View style={{flexDirection: 'row', flex: 2}}>
-                    {entry && <Text style={[styles.text, styles.textBold, {marginRight: 6}]}>{entry.index+1}.</Text>}
-                    <View style={{flexDirection: 'column', flex: 2, alignItems: 'flex-start'}}>
-                        {titleOverwrite && <Text style={[styles.text, styles.textBold, {flex: 1}]}>{titleOverwrite}</Text>}
-                        {!titleOverwrite && <Text style={[styles.text, styles.textBold, {flex: 1}]}>Spieler: {highscore.userName}</Text>}
-                        <Text style={[styles.text, styles.textBold, {flex: 1}]}>Score: {highscore.score}</Text>
-                        <Text style={[styles.text, styles.textBold, {flex: 1}]}>Eingetragen am: {date}</Text>
+              
+{/*Platzierung*/}
+                <View style={{flexDirection: 'row', flex: 1}}>
+                    {entry && <Text style={[styles.text,  styles.textBig, styles.textLight, styles.textLeftBound, {marginRight: 0}]}>{entry.index+1}.</Text>}
+
+                    <View style={{flexDirection: 'row', flex: 1, alignItems: 'flex-start', justifyContent: 'left', alignItems: 'center'}}>
+{/*Platzierung*/}                        
+                        {titleOverwrite && <Text style={[styles.text, styles.textBig, styles.textLight, {flex: 1}]}>{titleOverwrite}</Text>}
+
+{/*Score*/}                        
+                        <Text style={[styles.text, styles.textBig, styles.textLight, {flex: 2}]}>{highscore.score}</Text>
+
+{/*Username*/}                       
+{!titleOverwrite && <Text style={[styles.text,  styles.textBig, styles.textLeftBound, {flex: 2}]}>{highscore.userName}</Text>}
+
+
+{/*Datum*/}                         
+  {/*                            <Text style={[styles.text, styles.textDark, styles.textItalic, styles.textSmaller, {flex: 2}]}> {date}</Text> 
+
+
+{/*Verifikation*/}   
                         {highscore.verified != true && <Text style={[styles.text, styles.textBold, {flex: 1}]}>{highscore.verified == null ? "Wartet auf Verifikation" : "Abgelehnt"}</Text>}
                     </View>
+
+
                 </View>
             </View>
         </View>

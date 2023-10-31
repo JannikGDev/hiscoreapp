@@ -53,8 +53,13 @@ const defaultStyles = StyleSheet.create({
     textAlert: {
         color: '#D90B14'
     },
+
+    textSmaller: {
+        fontSize: 12,
+    },
+
     textBig: {
-        fontSize: 24
+        fontSize: 24,
     },
     textBigger: {
         fontSize: 45,
@@ -64,6 +69,11 @@ const defaultStyles = StyleSheet.create({
     textLeftBound: {
         textAlign: 'left',
     },
+
+    textRightBound: {
+        textAlign: 'right',
+    },
+
     textBold: {
         fontWeight: 'bold',
     },
@@ -71,7 +81,7 @@ const defaultStyles = StyleSheet.create({
         fontStyle: 'italic',
     },
     button: {
-        color: '#101f31'
+        color: '#101f31',
     },
 
     buttonOpen: {
@@ -161,13 +171,31 @@ const defaultStyles = StyleSheet.create({
     listContainer: {
         backgroundColor: '#040205',
         marginTop: 0,
+        
     },
+
+    hiscoreListContainer: {
+        zIndex:-1,
+        marginTop: -45,
+        paddingTop: 45,
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor:'#34d2e9',
+        borderTopColor:'transparent'
+        
+    },
+
+
     listItem: {
-        backgroundColor: '#3D3F56',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
+        backgroundColor: 'transparent',
+        padding: 5,
+        marginVertical: 3,
+        marginHorizontal: 8,
+        justifyContent: 'center',
+        
+
     },
+
     questItemOpen: {
         backgroundColor: '#0c1725',
     },

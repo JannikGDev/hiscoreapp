@@ -110,15 +110,22 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
             }}
         />
 
-        <Text style={styles.pageTitle}>
-            {game.name}: Highscore eintragen
-        </Text>
 
+<Image 
+            source={require('../assets/header-bg.png')} 
+            resizeMode="contain"
+            style={[{height: 100, width: '100%'}]}/>
+
+        <Text style={[styles.text, styles.textBig, styles.headerText]}>Neue Score</Text>
+        <Text style={[styles.textLight, styles.textBig]}>{game.name}</Text>
+
+
+        <Spacer bottom={48} />  
         <Text style={styles.text}>
-            Trage hier deinen erreichten Highscore im Spiel {game.name} ein. Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es hier hoch.
-        </Text>
+            Schritt 1:{"\n"}
+            Trage hier deinen erreichten Highscore im Spiel {game.name} ein.</Text>
 
-        <SafeAreaView style = {{marginTop: 16,flexDirection: 'row'}}>
+            <SafeAreaView style = {{marginTop: 16,flexDirection: 'row'}}>
             <TextInput
                 style={[styles.textInput, {width: '100%'}]}
                 onChangeText={text =>   {
@@ -136,6 +143,14 @@ const HighscoreSubmitScreen = ({navigation, route}) => {
                 textContentType='none'
             />
         </SafeAreaView>
+
+        <Spacer bottom={48} />    
+
+            <Text style={styles.text}>Schritt 2:{"\n"}
+            Mach ein Beweisfoto, auf dem der Highscore und dein Username groß und klar leserlich sind und lade es über den Button hoch:</Text>
+        
+
+
         
         {!showCam &&
         <>

@@ -33,14 +33,9 @@ const HomeScreen = ({navigation}) => {
 
              <Spacer bottom={12} />           
 
-            <Image 
-              source={require('../assets/header-bg.png')} 
-              resizeMode="contain"
-              style={[{height: 100, width: '100%'}]}/>
-
             {adminMode && (<Text style={styles.pageTitle}>Admin Mode</Text>)}
 
-            <Spacer bottom={12} />
+            <Spacer bottom={36} />
 
             {userMode && <NavButton text={"Profil"} navigation={navigation} style={[styles.widthHalf]} navTarget={'Profile'}/>}
 
