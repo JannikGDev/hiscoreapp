@@ -146,7 +146,7 @@ const HighscoreListScreen = ({navigation, route}) => {
             <View style={[styles.listContainer,{width: '100%'}]}>
                 <FlatList
                     data={category.highscores}
-                    renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
+                    renderItem={(entry) => <HighscoreItem highscore={entry.item} entry={entry}/>}
                     keyExtractor={highscore => highscore.id}
                 />
             </View>
@@ -161,7 +161,7 @@ const HighscoreListScreen = ({navigation, route}) => {
             <View style={[styles.listContainer,{width: '100%'}]}>
                 <FlatList
                     data={category.highscoresMonthly}
-                    renderItem={(entry) => <HighscoreItem highscore={entry.item}/>}
+                    renderItem={(entry) => <HighscoreItem highscore={entry.item} entry={entry}/>}
                     keyExtractor={highscore => highscore.id}
                 />
             </View>*/}
@@ -174,13 +174,14 @@ const HighscoreListScreen = ({navigation, route}) => {
 };
 
 
-const HighscoreItem = ({highscore, titleOverwrite}) => 
+const HighscoreItem = ({highscore, titleOverwrite, entry}) => 
 {
     let date = Moment(highscore.submissionTime).format('DD.MM.YYYY')
     return  (
         <View style={[styles.listItem, {padding: 0}]}>
             <View style={[styles.listItem, {flexDirection: 'column'}]}>
                 <View style={{flexDirection: 'row', flex: 2}}>
+                    {entry && <Text style={[styles.text, styles.textBold, {marginRight: 6}]}>{entry.index+1}.</Text>}
                     <View style={{flexDirection: 'column', flex: 2, alignItems: 'flex-start'}}>
                         {titleOverwrite && <Text style={[styles.text, styles.textBold, {flex: 1}]}>{titleOverwrite}</Text>}
                         {!titleOverwrite && <Text style={[styles.text, styles.textBold, {flex: 1}]}>Spieler: {highscore.userName}</Text>}
